@@ -69,6 +69,7 @@
           {key:5,Id:'首页iconB'},
           {key:6,Id:'首页iconC'},
           {key:7,Id:'首页iconD'},
+          {key:8,Id:'首页产品列表'},
         ],
         electValue:'首页iconD',
         electData1:[],
@@ -179,6 +180,8 @@
           this.$router.push('/addIconProduct3');
         }else if(this.electValue=="7"){
           this.$router.push('/addIconProduct4');
+        }else if(this.electValue=="8"){
+          this.$router.push('/addHomeProductList');
         }
       },
       getProductList(){

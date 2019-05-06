@@ -56,6 +56,7 @@
           {key:5,Id:'首页iconB'},
           {key:6,Id:'首页iconC'},
           {key:7,Id:'首页iconD'},
+          {key:8,Id:'首页产品列表'},
         ],
         accountName:"",
         electValue:'首页iconB',

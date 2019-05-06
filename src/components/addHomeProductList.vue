@@ -171,7 +171,7 @@
             param.append('file1', this.ruleForm.filename)  // 通过append向form对象添加数据
             param.append('file2', this.ruleForm.filename1)  // 通过append向form对象添加数据
             param.append('pname', this.ruleForm.name) // 添加form表单中其他数据
-            param.append('type', 4) // 添加form表单中其他数据
+            param.append('type', 8) // 添加form表单中其他数据
             param.append('h5Url', this.ruleForm.h5Url) // 添加form表单中其他数据
             param.append('remark', this.ruleForm.remark) // 添加form表单中其他数据
             param.append('accountId', this.ruleForm.electValue1) // 添加form表单中其他数据
@@ -239,8 +239,6 @@
           this.$router.push('/addIconProduct3');
         }else if(this.electValue=="7"){
           this.$router.push('/addIconProduct4');
-        }else if(this.electValue=="8"){
-          this.$router.push('/addHomeProductList');
         }
       },
       getProductList(){

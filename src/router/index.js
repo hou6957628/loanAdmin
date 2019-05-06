@@ -5,6 +5,8 @@ import home from '@/home'
 import accountCenter from '@/components/accountCenter'
 import statisticalCenter from '@/components/statisticalCenter'
 import productList from '@/components/productList'
+import addHomeProductList from '@/components/addHomeProductList'
+import editorHomeProductList from '@/components/editorHomeProductList'
 import addProduct from '@/components/addProduct'
 import addBannerProduct from '@/components/addBannerProduct'
 import addIconProduct from '@/components/addIconProduct'
@@ -60,7 +62,8 @@ axios.interceptors.response.use(
     return Promise.reject(error.response)   // 返回接口返回的错误信息
   });
 
-Vue.prototype.baseUrl="39.107.228.38:31999";
+Vue.prototype.baseUrl="60.205.216.141";
+// Vue.prototype.baseUrl="39.107.228.38:31999";
 // Vue.prototype.baseUrl="192.168.20.216:9999";
 Vue.prototype.uurl="window.location.origin";
 
@@ -105,6 +108,22 @@ const vueRouter = new Router({
         requireAuth: true
       },
       component: productList
+    },
+    {
+      path: '/addHomeProductList',
+      name: 'addHomeProductList',
+      meta: {
+        requireAuth: true
+      },
+      component: addHomeProductList
+    },
+    {
+      path: '/editorHomeProductList/:id',
+      name: 'editorHomeProductList',
+      meta: {
+        requireAuth: true
+      },
+      component: editorHomeProductList
     },
     {
       path: '/accountCenter',

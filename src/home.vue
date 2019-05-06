@@ -28,7 +28,7 @@
     },
     mounted:function () {
       var test = window.location.href;
-      if(test=="http://39.105.217.251/dist/index.html"){
+      if(test=="http://39.105.217.251/daicao/index.html"){
         this.topBar=false;
         this.leftSilder=false;
       }

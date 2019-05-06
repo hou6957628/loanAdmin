@@ -1,6 +1,6 @@
 <template>
   <div class="container" id="app">
-    <p class="topClass"><img src="http://www.zytech360.com/images/daichaoLogo.png"/></p>
+    <p class="topClass"><img src="http://123.56.12.92/images/daichaoLogo.png"/></p>
     <div class="contentBox">
       <div class="content">
         <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="60px" class="demo-ruleForm">
@@ -105,7 +105,7 @@
     max-height: 100%;
     overflow: hidden;
     background-color: #0a93f7;
-    background: url("http://www.zytech360.com/images/banner2.jpg");
+    /*background: url("http://www.zytech360.com/images/banner2.jpg");*/
     background-size: cover;
   }
 

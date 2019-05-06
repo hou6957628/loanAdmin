@@ -83,6 +83,7 @@
             <el-button v-if="scope.row.type==5" @click="bian5(scope.row)" type="text" size="small">编辑</el-button>
             <el-button v-if="scope.row.type==6" @click="bian6(scope.row)" type="text" size="small">编辑</el-button>
             <el-button v-if="scope.row.type==7" @click="bian7(scope.row)" type="text" size="small">编辑</el-button>
+            <el-button v-if="scope.row.type==8" @click="bian8(scope.row)" type="text" size="small">编辑</el-button>
             <el-button v-if="scope.row.enabled" @click="obtainedProduct(scope.row)" type="text" size="small">下架</el-button>
             <el-button v-if="!scope.row.enabled" @click="obtainedProduct(scope.row)" type="text" size="small">上架</el-button>
             <el-button @click="handleClick(scope.row)" type="text" size="small">统计</el-button>
@@ -186,6 +187,13 @@
           path: `/editorIconProduct4/${id}`,
         });
       },
+      bian8(row){
+        console.log(row.id);
+        var id=row.id;
+        this.$router.push({
+          path: `/editorHomeProductList/${id}`,
+        });
+      },
       toAddProduct(){
         this.$router.push({
           path: `/addProduct`,
@@ -281,6 +289,7 @@
           {key:5,Id:'首页iconB'},
           {key:6,Id:'首页iconC'},
           {key:7,Id:'首页iconD'},
+          {key:8,Id:'首页产品列表'},
         ],
         electValue:''
       }
