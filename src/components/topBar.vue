@@ -1,8 +1,8 @@
 <template>
   <div class="topbar">
     <h1 class="logo">
-      <a href="javascript:;" title="借点贷超管理系统">
-        <span>借点贷超管理系统</span>
+      <a href="javascript:;" title="贷超管理系统">
+        <span>小锦鲤管理系统</span>
       </a>
     </h1>
     <el-button @click="goOut()" class="goOut" type="info">退出登录</el-button>

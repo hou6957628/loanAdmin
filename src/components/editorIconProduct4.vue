@@ -23,7 +23,7 @@
           <el-input v-model="ruleForm.position" placeholder="选择上传到首页页面上的哪个icon与之对应，1为左一，2为左二，3为左三，4为左四"></el-input>
         </el-form-item>
         <el-form-item label="链接地址" prop="h5Url">
-          <el-input v-model="ruleForm.h5Url" placeholder="例: http://www.zytech360.com/"></el-input>
+          <el-input v-model="ruleForm.h5Url" placeholder="例: 请输入产品链接"></el-input>
         </el-form-item>
         <el-form-item label="链接地址">
           <a class="target" :href="ruleForm.h5Url" target="_blank">查看链接地址</a>
@@ -131,20 +131,20 @@
             // });
             axios({
               method:"POST",
-              url:"http://"+this.baseUrl+"/super/admin/product/updateProductById",
+              url:"http://"+this.baseUrl+"/flowPool/admin/product/updateProductById",
               headers:{
                 'Content-Type':'application/x-www-form-urlencoded',
                 'Authorization': localStorage.token
               },
               data:param,
             }).then((res)=>{
-              if(res.data.msgCd=='ZYCASH-SUPERMARKET-200'){
+              if(res.data.msgCd=='ZYCASH-200'){
                 this.$message({
                   message: '添加成功',
                   type: 'success'
                 });
                 this.$router.push('/productList');
-              }else if(res.data.msgCd=='ZYCASH-SUPERMARKET-1009'){
+              }else if(res.data.msgCd=='ZYCASH-1009'){
                 this.$message.error(res.data.msgInfo);
               }
               else {
@@ -179,7 +179,7 @@
       getProductList(data){
         axios({
           method:"get",
-          url:"http://"+this.baseUrl+"/super/admin/product/queryProductById",
+          url:"http://"+this.baseUrl+"/flowPool/admin/product/queryProductById",
           headers:{
             'Content-Type':'application/x-www-form-urlencoded',
             'Authorization': localStorage.token
@@ -188,7 +188,7 @@
             id:this.id
           }
         }).then((res)=>{
-          if(res.data.msgCd=='ZYCASH-SUPERMARKET-200'){
+          if(res.data.msgCd=='ZYCASH-200'){
             this.ruleForm= res.data.body.product;
             this.ruleForm.image= "如需修改请点击上传";
             this.ruleForm.pname= res.data.body.product.pname;

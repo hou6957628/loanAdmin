@@ -150,7 +150,7 @@
       getProductList(data1){
         axios({
           method:"get",
-          url:"http://"+this.baseUrl+"/super/admin/productinfo/queryProductInfoById",
+          url:"http://"+this.baseUrl+"/flowPool/admin/productinfo/queryProductInfoById",
           headers:{
             'Content-Type':'application/x-www-form-urlencoded',
             'Authorization': localStorage.token
@@ -159,7 +159,7 @@
             id: this.id
           }
         }).then((res)=>{
-          if(res.data.msgCd=='ZYCASH-SUPERMARKET-200'){
+          if(res.data.msgCd=='ZYCASH-200'){
             this.ruleForm.productName=res.data.body.productName;
             this.ruleForm.productId=res.data.body.productId;
             this.ruleForm.statisticsDate=res.data.body.statisticsDate;
@@ -193,7 +193,7 @@
       submitFrom(data){
         axios({
           method:"POST",
-          url:"http://"+this.baseUrl+"/super/admin/productinfo/updateProductInfoById",
+          url:"http://"+this.baseUrl+"/flowPool/admin/productinfo/updateProductInfoById",
           headers:{
             'Content-Type':'application/x-www-form-urlencoded',
             'Authorization': localStorage.token
@@ -213,7 +213,7 @@
             remark:this.ruleForm.remark,
           }
         }).then((res)=>{
-          if(res.data.msgCd=='ZYCASH-SUPERMARKET-200'){
+          if(res.data.msgCd=='ZYCASH-200'){
             this.$message({
               message: '添加成功',
               type: 'success'

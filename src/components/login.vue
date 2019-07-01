@@ -1,6 +1,6 @@
 <template>
   <div class="container" id="app">
-    <p class="topClass"><img src="http://123.56.12.92/images/daichaoLogo.png"/></p>
+    <p class="topClass"><img src=""/></p>
     <div class="contentBox">
       <div class="content">
         <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="60px" class="demo-ruleForm">
@@ -59,13 +59,13 @@
           if (valid) {
             axios({
               method:"post",
-              url:"http://"+this.baseUrl+"/super/admin/user/login",
+              url:"http://"+this.baseUrl+"/flowPool/admin/user/login",
               data:data,
               headers:{
                 'Content-Type':'application/x-www-form-urlencoded'
               }
             }).then((res)=>{
-              if(res.data.msgCd=='ZYCASH-SUPERMARKET-200'){
+              if(res.data.msgCd=='ZYCASH-200'){
                 localStorage.token=res.data.body.token;
                 this.$message({
                   message: '登录成功',
@@ -105,7 +105,7 @@
     max-height: 100%;
     overflow: hidden;
     background-color: #0a93f7;
-    /*background: url("http://www.zytech360.com/images/banner2.jpg");*/
+    /*background: url("请输入文案内容images/banner2.jpg");*/
     background-size: cover;
   }
 
@@ -169,3 +169,5 @@
     color: #fff;
   }
 </style>
+<!--<td v-if="item.parentChannelName=='卓金'">{{item.cpsFactNum}}</td>-->
+<!--<td v-if="item.parentChannelName!='卓金'">{{item.cpsNum}}</td>-->

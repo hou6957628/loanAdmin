@@ -2,7 +2,7 @@
   <div class="content">
     <el-breadcrumb class="fs-16" separator-class="el-icon-arrow-right">
       <el-breadcrumb-item :to="{ path: '/productList' }">产品中心</el-breadcrumb-item>
-      <el-breadcrumb-item>添加产品列表</el-breadcrumb-item>
+      <el-breadcrumb-item>添加秒批到账列表</el-breadcrumb-item>
     </el-breadcrumb>
     <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm">
       <el-form-item label="产品名称" prop="name">
@@ -93,7 +93,7 @@
           {key:12,Id:'添加秒批到账列表'},
           {key:13,Id:'添加再看看列表'},
         ],
-        electValue:'产品列表',
+        electValue:'添加秒批到账列表',
         electData1:[],
         electValue1:'',
         ruleForm: {
@@ -114,7 +114,6 @@
           description2:'',
           description3:'',
           description4:'',
-          description5:'',
           detailsBorrowing:'',
           detailsTips:'',
           accountId:'',
@@ -134,19 +133,19 @@
             {required: true, message: '产品链接', trigger: 'change'}
           ],
           description1: [
-            {required: true, message: '请输入文案', trigger: 'change'}
+            {required: true, message: '请输入文案1', trigger: 'change'}
           ],
           description2: [
-            {required: true, message: '请输入文案', trigger: 'change'}
+            {required: true, message: '请输入文案2', trigger: 'change'}
           ],
           description3: [
-            {required: true, message: '请输入文案', trigger: 'change'}
+            {required: true, message: '请输入文案3', trigger: 'change'}
           ],
           description4: [
-            {required: true, message: '请输入文案', trigger: 'change'}
+            {required: true, message: '请输入文案4', trigger: 'change'}
           ],
           description5: [
-            {required: true, message: '请输入文案', trigger: 'change'}
+            {required: true, message: '请输入文案5', trigger: 'change'}
           ],
           filename: [
             {required: true, message: '请上传列表logo图片', trigger: 'change'}
@@ -177,7 +176,7 @@
             param.append('file1', this.ruleForm.filename)  // 通过append向form对象添加数据
             param.append('file2', this.ruleForm.filename1)  // 通过append向form对象添加数据
             param.append('pname', this.ruleForm.name) // 添加form表单中其他数据
-            param.append('type', 4) // 添加form表单中其他数据
+            param.append('type', 12) // 添加form表单中其他数据
             param.append('h5Url', this.ruleForm.h5Url) // 添加form表单中其他数据
             param.append('remark', this.ruleForm.remark) // 添加form表单中其他数据
             param.append('accountId', this.ruleForm.electValue1) // 添加form表单中其他数据

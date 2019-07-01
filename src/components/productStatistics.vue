@@ -163,7 +163,7 @@
       daoBtn(){
         axios({
           method:"get",
-          url:"http://"+this.baseUrl+"/super/admin/productinfo/export",
+          url:"http://"+this.baseUrl+"/flowPool/admin/productinfo/export",
           headers:{
             "content-type":"application/x-download;charset=utf-8",
             "content-disposition":"attachment;filename=total.xls",
@@ -186,7 +186,7 @@
       getProductList(data1,data2,data3,data4,data5){
         axios({
           method:"get",
-          url:"http://"+this.baseUrl+"/super/admin/productinfo/getProductInfoList",
+          url:"http://"+this.baseUrl+"/flowPool/admin/productinfo/getProductInfoList",
           headers:{
             'Content-Type':'application/x-www-form-urlencoded',
             'Authorization': localStorage.token
@@ -199,7 +199,7 @@
             endDate: data5,
           }
         }).then((res)=>{
-          if(res.data.msgCd=='ZYCASH-SUPERMARKET-200'){
+          if(res.data.msgCd=='ZYCASH-200'){
             this.tableData=res.data.body.pageInfo.list;
             this.proTotal=res.data.body.pageInfo.total;
             this.pageSize=res.data.body.pageInfo.pageSize;
@@ -215,7 +215,7 @@
         if (!data) {
           return
         }
-        let url = "http://"+this.baseUrl+"/super/admin/productinfo/export?name="+this.value8+"&startDate="+this.startTime+"&endDate="+this.endTime;
+        let url = "http://"+this.baseUrl+"/flowPool/admin/productinfo/export?name="+this.value8+"&startDate="+this.startTime+"&endDate="+this.endTime;
         let link = document.createElement('a');
         link.style.display = 'none';
         link.href = url;
@@ -227,7 +227,7 @@
       IncomeBtn(){
         axios({
           method:"get",
-          url:"http://"+this.baseUrl+"/super/admin/productinfo/getIncomeByProductId",
+          url:"http://"+this.baseUrl+"/flowPool/admin/productinfo/getIncomeByProductId",
           headers:{
             'Content-Type':'application/x-www-form-urlencoded',
             'Authorization': localStorage.token
@@ -238,7 +238,7 @@
             endDate: this.endTime,
           }
         }).then((res)=>{
-          if(res.data.msgCd=='ZYCASH-SUPERMARKET-200'){
+          if(res.data.msgCd=='ZYCASH-200'){
             this.Income=res.data.body.totalIncome;
             this.$message({
               message: '操作成功',

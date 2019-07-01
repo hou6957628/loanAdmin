@@ -20,13 +20,16 @@
         <el-alert :closable="false" style="padding: 3px 16px;" title="列表logo推荐尺寸（48*48）为png或jpg格式" type="success"></el-alert>
       </el-form-item>
       <el-form-item label="文案一" prop="description1">
-        <el-input v-model="ruleForm.description1" placeholder="例: http://www.zytech360.com/"></el-input>
+        <el-input v-model="ruleForm.description1" placeholder="例: 请输入文案内容"></el-input>
       </el-form-item>
       <el-form-item label="文案二" prop="description2">
-        <el-input v-model="ruleForm.description2" placeholder="例: http://www.zytech360.com/"></el-input>
+        <el-input v-model="ruleForm.description2" placeholder="例: 请输入文案内容"></el-input>
       </el-form-item>
       <el-form-item label="文案三" prop="description3">
-        <el-input v-model="ruleForm.description3" placeholder="例: http://www.zytech360.com/"></el-input>
+        <el-input v-model="ruleForm.description3" placeholder="例: 请输入文案内容"></el-input>
+      </el-form-item>
+      <el-form-item label="文案四" prop="description5">
+        <el-input v-model="ruleForm.description5" placeholder="例: 请输入文案内容"></el-input>
       </el-form-item>
       <el-form-item label="详情logo" prop="filename2">
         <a class="upload-file" href="javascript:;" v-model="ruleForm.filename1">{{ruleForm.image1}}<input type="file" accept="image/png,image/gif,image/jpeg" value="上传logo" @change="tirggerFile1($event)"></a>
@@ -34,7 +37,7 @@
         <el-alert :closable="false" style="padding: 3px 16px;" title="产品详情页中的logo（110*110）为png或jpg格式" type="success"></el-alert>
       </el-form-item>
       <el-form-item label="名称下文案" prop="description4">
-        <el-input v-model="ruleForm.description4" placeholder="例: http://www.zytech360.com/"></el-input>
+        <el-input v-model="ruleForm.description4" placeholder="例: 请输入文案内容"></el-input>
       </el-form-item>
       <el-form-item label="温馨提示" prop="detailsTips">
         <el-input type="textarea" v-model="ruleForm.detailsTips" placeholder="为对此产品的备注信息"></el-input>
@@ -43,7 +46,7 @@
         <el-input type="textarea" v-model="ruleForm.detailsBorrowing" placeholder="为对此产品的备注信息"></el-input>
       </el-form-item>
       <el-form-item label="产品链接" prop="h5Url">
-        <el-input v-model="ruleForm.h5Url" placeholder="例: http://www.zytech360.com/"></el-input>
+        <el-input v-model="ruleForm.h5Url" placeholder="例: 请输入产品链接"></el-input>
       </el-form-item>
       <el-form-item label="备注" prop="remark">
         <el-input type="textarea" v-model="ruleForm.remark" placeholder="为对此产品的备注信息"></el-input>
@@ -83,6 +86,7 @@
           description2:'',
           description3:'',
           description4:'',
+          description5:'',
           position:'',
           detail:'',
           electValue:'',
@@ -91,7 +95,7 @@
         rules: {
           pname: [
             {required: true, message: '请输入产品名称', trigger: 'blur'},
-            {min: 3, max: 8, message: '长度在 3 到 8 个字符', trigger: 'blur'}
+
           ],
           electValue: [
             {required: true, message: '请选择产品分类', trigger: 'change'}
@@ -112,6 +116,9 @@
             {required: true, message: '请输入文案', trigger: 'change'}
           ],
           description4: [
+            {required: true, message: '请输入文案', trigger: 'change'}
+          ],
+          description5: [
             {required: true, message: '请输入文案', trigger: 'change'}
           ],
           detailLogo: [
@@ -164,25 +171,26 @@
             param.append('description2', this.ruleForm.description2) // 添加form表单中其他数据
             param.append('description3', this.ruleForm.description3) // 添加form表单中其他数据
             param.append('description4', this.ruleForm.description4) // 添加form表单中其他数据
+            param.append('description5', this.ruleForm.description5) // 添加form表单中其他数据
             param.append('detailsTips', this.ruleForm.detailsTips) // 添加form表单中其他数据
             param.append('detailsBorrowing', this.ruleForm.detailsBorrowing) // 添加form表单中其他数据
             param.append('id', this.id) // 添加form表单中其他数据
             axios({
               method:"POST",
-              url:"http://"+this.baseUrl+"/super/admin/product/updateProductById",
+              url:"http://"+this.baseUrl+"/flowPool/admin/product/updateProductById",
               headers:{
                 'Content-Type':'application/x-www-form-urlencoded',
                 'Authorization': localStorage.token
               },
               data:param,
             }).then((res)=>{
-              if(res.data.msgCd=='ZYCASH-SUPERMARKET-200'){
+              if(res.data.msgCd=='ZYCASH-200'){
                 this.$message({
                   message: '添加成功',
                   type: 'success'
                 });
                 this.$router.push('/productList');
-              }else if(res.data.msgCd=='ZYCASH-SUPERMARKET-1009'){
+              }else if(res.data.msgCd=='ZYCASH-1009'){
                 this.$message.error(res.data.msgInfo);
               }
               else {
@@ -222,7 +230,7 @@
       getProductList(data){
         axios({
           method:"get",
-          url:"http://"+this.baseUrl+"/super/admin/product/queryProductById",
+          url:"http://"+this.baseUrl+"/flowPool/admin/product/queryProductById",
           headers:{
             'Content-Type':'application/x-www-form-urlencoded',
             'Authorization': localStorage.token
@@ -231,7 +239,7 @@
             id:this.id
           }
         }).then((res)=>{
-          if(res.data.msgCd=='ZYCASH-SUPERMARKET-200'){
+          if(res.data.msgCd=='ZYCASH-200'){
             this.ruleForm= res.data.body.product;
             this.ruleForm.image= "如需修改请点击上传";
             this.ruleForm.image1= "如需修改请点击上传";

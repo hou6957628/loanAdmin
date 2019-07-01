@@ -31,6 +31,9 @@
       if(test=="http://39.105.217.251/daicao/index.html"){
         this.topBar=false;
         this.leftSilder=false;
+      }else if(test=="http://39.96.195.239/XJL/index.html"){
+        this.topBar=false;
+        this.leftSilder=false;
       }
     },
     data() {

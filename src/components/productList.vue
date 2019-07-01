@@ -84,6 +84,11 @@
             <el-button v-if="scope.row.type==6" @click="bian6(scope.row)" type="text" size="small">编辑</el-button>
             <el-button v-if="scope.row.type==7" @click="bian7(scope.row)" type="text" size="small">编辑</el-button>
             <el-button v-if="scope.row.type==8" @click="bian8(scope.row)" type="text" size="small">编辑</el-button>
+            <el-button v-if="scope.row.type==9" @click="bian9(scope.row)" type="text" size="small">编辑</el-button>
+            <el-button v-if="scope.row.type==10" @click="bian10(scope.row)" type="text" size="small">编辑</el-button>
+            <el-button v-if="scope.row.type==11" @click="bian11(scope.row)" type="text" size="small">编辑</el-button>
+            <el-button v-if="scope.row.type==12" @click="bian12(scope.row)" type="text" size="small">编辑</el-button>
+            <el-button v-if="scope.row.type==13" @click="bian13(scope.row)" type="text" size="small">编辑</el-button>
             <el-button v-if="scope.row.enabled" @click="obtainedProduct(scope.row)" type="text" size="small">下架</el-button>
             <el-button v-if="!scope.row.enabled" @click="obtainedProduct(scope.row)" type="text" size="small">上架</el-button>
             <el-button @click="handleClick(scope.row)" type="text" size="small">统计</el-button>
@@ -138,18 +143,11 @@
         console.log(this.nowPageSizes);
         this.getProductList(val,this.nowPageSizes,this.input10,this.electValue);
       },
-      bian1(row){
+      bian4(row){
         console.log(row.id);
         var id=row.id;
         this.$router.push({
-          path: `/editorProduct/${id}`,
-        });
-      },
-      bian2(row){
-        console.log(row.id);
-        var id=row.id;
-        this.$router.push({
-          path: `/editorIconProduct/${id}`,
+          path: `/editorProductList/${id}`,
         });
       },
       bian3(row){
@@ -159,44 +157,44 @@
           path: `/editorBannerProduct/${id}`,
         });
       },
-      bian4(row){
+      bian9(row){
         console.log(row.id);
         var id=row.id;
         this.$router.push({
-          path: `/editorProductList/${id}`,
+          path: `/editorIcon1List/${id}`,
         });
       },
-      bian5(row){
+      bian10(row){
         console.log(row.id);
         var id=row.id;
         this.$router.push({
-          path: `/editorIconProduct2/${id}`,
+          path: `/editorIcon2List/${id}`,
         });
       },
-      bian6(row){
+      bian11(row){
         console.log(row.id);
         var id=row.id;
         this.$router.push({
-          path: `/editorIconProduct3/${id}`,
+          path: `/editorIcon3List/${id}`,
         });
       },
-      bian7(row){
+      bian12(row){
         console.log(row.id);
         var id=row.id;
         this.$router.push({
-          path: `/editorIconProduct4/${id}`,
+          path: `/editorIcon4List/${id}`,
         });
       },
-      bian8(row){
+      bian13(row){
         console.log(row.id);
         var id=row.id;
         this.$router.push({
-          path: `/editorHomeProductList/${id}`,
+          path: `/editorLookList/${id}`,
         });
       },
       toAddProduct(){
         this.$router.push({
-          path: `/addProduct`,
+          path: `/addProductList`,
         });
       },
       getProductList(data1,data2,data3,data4,){
@@ -209,7 +207,7 @@
         // });
         axios({
           method:"get",
-          url:"http://"+this.baseUrl+"/super/admin/product/list",
+          url:"http://"+this.baseUrl+"/flowPool/admin/product/list",
           headers:{
             'Content-Type':'application/x-www-form-urlencoded',
             'Authorization': localStorage.token
@@ -221,7 +219,7 @@
             typeId: data4,
           }
         }).then((res)=>{
-          if(res.data.msgCd=='ZYCASH-SUPERMARKET-200'){
+          if(res.data.msgCd=='ZYCASH-200'){
             this.tableData=res.data.body.productList.list;
             this.proTotal=res.data.body.productList.total;
             this.pageSize=res.data.body.productList.pageSize;
@@ -246,14 +244,14 @@
         });
         axios({
           method:"post",
-          url:"http://"+this.baseUrl+"/super/admin/product/obtainedProduct",
+          url:"http://"+this.baseUrl+"/flowPool/admin/product/obtainedProduct",
           headers:{
             'Content-Type':'application/x-www-form-urlencoded',
             'Authorization': localStorage.token
           },
           data:suju1,
         }).then((res)=>{
-          if(res.data.msgCd=='ZYCASH-SUPERMARKET-200'){
+          if(res.data.msgCd=='ZYCASH-200'){
             this.$message({
               message: '操作成功',
               type: 'success'
@@ -281,15 +279,13 @@
         pageSizes:[10,6,5],
         nowPageSizes:10,
         electData:[
-          {key:'',Id:'全部'},
-          {key:1,Id:'首页弹窗'},
-          {key:2,Id:'首页iconA'},
           {key:3,Id:'首页banner'},
           {key:4,Id:'产品列表'},
-          {key:5,Id:'首页iconB'},
-          {key:6,Id:'首页iconC'},
-          {key:7,Id:'首页iconD'},
-          {key:8,Id:'首页产品列表'},
+          {key:9,Id:'添加大额分期列表'},
+          {key:10,Id:'添加小额速贷列表'},
+          {key:11,Id:'添加新品推荐列表'},
+          {key:12,Id:'添加秒批到账列表'},
+          {key:13,Id:'添加再看看列表'},
         ],
         electValue:''
       }

@@ -120,7 +120,7 @@
       getProductList(data1,data2,data3,data4,data5){
         axios({
           method:"post",
-          url:"http://"+this.baseUrl+"/super/admin/account/cashList",
+          url:"http://"+this.baseUrl+"/flowPool/admin/account/cashList",
           headers:{
             'Content-Type':'application/x-www-form-urlencoded',
             'Authorization': localStorage.token
@@ -133,7 +133,7 @@
             endTime: data5,
           }
         }).then((res)=>{
-          if(res.data.msgCd=='ZYCASH-SUPERMARKET-200'){
+          if(res.data.msgCd=='ZYCASH-200'){
             this.tableData=res.data.body.list;
             this.proTotal=res.data.body.total;
             this.pageSize=res.data.body.pageSize;
@@ -157,7 +157,7 @@
         }else {
           axios({
             method:"post",
-            url:"http://"+this.baseUrl+"/super/admin/account/cash",
+            url:"http://"+this.baseUrl+"/flowPool/admin/account/cash",
             headers:{
               'Content-Type':'application/x-www-form-urlencoded',
               'Authorization': localStorage.token
@@ -168,7 +168,7 @@
               remark: this.remark,
             }
           }).then((res)=>{
-            if(res.data.msgCd=='ZYCASH-SUPERMARKET-200'){
+            if(res.data.msgCd=='ZYCASH-200'){
               this.$message({
                 message: '添加成功',
                 type: 'success'

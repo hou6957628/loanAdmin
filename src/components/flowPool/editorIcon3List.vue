@@ -2,27 +2,20 @@
   <div class="content">
     <el-breadcrumb class="fs-16" separator-class="el-icon-arrow-right">
       <el-breadcrumb-item :to="{ path: '/productList' }">产品中心</el-breadcrumb-item>
-      <el-breadcrumb-item>添加产品列表</el-breadcrumb-item>
+      <el-breadcrumb-item>编辑新品推荐列表</el-breadcrumb-item>
     </el-breadcrumb>
     <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm">
-      <el-form-item label="产品名称" prop="name">
-        <el-input v-model="ruleForm.name" placeholder="请填写产品名称"></el-input>
+      <el-form-item label="产品名称" prop="pname">
+        <el-input v-model="ruleForm.pname" placeholder="请填写产品名称"></el-input>
       </el-form-item>
       <el-form-item label="产品分类" prop="region">
-        <el-select v-model="electValue" @change="selectChange">
-          <el-option
-            v-for="item in electData"
-            :key="item.key"
-            :label="item.Id"
-            :value="item.key">
-          </el-option>
-        </el-select>
+        <el-select v-model="electValue" placeholder="请选择"></el-select>
       </el-form-item>
       <el-form-item label="位置输入" prop="position">
         <el-input v-model="ruleForm.position" placeholder="请输入位置   如输入1则在列表顶端展示"></el-input>
       </el-form-item>
       <el-form-item label="列表logo" prop="filename">
-        <a class="upload-file" href="javascript:;">{{ruleForm.image}}<input type="file" accept="image/png,image/gif,image/jpeg" value="上传logo" @change="tirggerFile($event)"></a>
+        <a class="upload-file" href="javascript:;" v-model="ruleForm.filename">{{ruleForm.image}}<input type="file" accept="image/png,image/gif,image/jpeg" value="上传logo" @change="tirggerFile($event)"></a>
         <input class="fileBox" type="hidden" v-model="ruleForm.filename">
         <el-alert :closable="false" style="padding: 3px 16px;" title="列表logo推荐尺寸（48*48）为png或jpg格式" type="success"></el-alert>
       </el-form-item>
@@ -38,10 +31,10 @@
       <el-form-item label="文案四" prop="description5">
         <el-input v-model="ruleForm.description5" placeholder="例: 请输入文案内容"></el-input>
       </el-form-item>
-      <el-form-item label="详情logo" prop="filename1">
-        <a class="upload-file" href="javascript:;">{{ruleForm.image1}}<input type="file" accept="image/png,image/gif,image/jpeg" value="上传logo" @change="tirggerFile1($event)"></a>
+      <el-form-item label="详情logo" prop="filename2">
+        <a class="upload-file" href="javascript:;" v-model="ruleForm.filename1">{{ruleForm.image1}}<input type="file" accept="image/png,image/gif,image/jpeg" value="上传logo" @change="tirggerFile1($event)"></a>
         <input class="fileBox" type="hidden" v-model="ruleForm.filename1">
-        <el-alert :closable="false" style="padding: 3px 16px;" title="产品详情页中的logo（110*110）格式为png或jpg" type="success"></el-alert>
+        <el-alert :closable="false" style="padding: 3px 16px;" title="产品详情页中的logo（110*110）为png或jpg格式" type="success"></el-alert>
       </el-form-item>
       <el-form-item label="名称下文案" prop="description4">
         <el-input v-model="ruleForm.description4" placeholder="例: 请输入文案内容"></el-input>
@@ -55,25 +48,15 @@
       <el-form-item label="产品链接" prop="h5Url">
         <el-input v-model="ruleForm.h5Url" placeholder="例: 请输入产品链接"></el-input>
       </el-form-item>
-      <el-form-item label="链接地址">
-        <a class="target" :href="ruleForm.h5Url" target="_blank">查看链接地址</a>
-      </el-form-item>
       <el-form-item label="备注" prop="remark">
         <el-input type="textarea" v-model="ruleForm.remark" placeholder="为对此产品的备注信息"></el-input>
       </el-form-item>
-      <el-form-item label="账户选择" prop="electValue1">
-        <el-select v-model="ruleForm.electValue1">
-          <el-option
-            v-for="item in electData1"
-            :key="item.id"
-            :label="item.name"
-            :value="item.id">
-          </el-option>
-        </el-select>
+      <el-form-item label="账户选择" prop="company">
+        <el-input disabled="disabled" v-model="ruleForm.electValue1" placeholder="请填写产品名称"></el-input>
+        <el-input type="hidden" v-model="ruleForm.accountId" placeholder="为对此产品的备注信息"></el-input>
       </el-form-item>
       <el-form-item>
         <el-button type="primary" @click="submitForm('ruleForm')">立即创建</el-button>
-        <!--<el-button @click="resetForm('ruleForm')">重置</el-button>-->
       </el-form-item>
     </el-form>
   </div>
@@ -84,21 +67,10 @@
   export default {
     data() {
       return {
-        electData:[
-          {key:3,Id:'首页banner'},
-          {key:4,Id:'产品列表'},
-          {key:9,Id:'添加大额分期列表'},
-          {key:10,Id:'添加小额速贷列表'},
-          {key:11,Id:'添加新品推荐列表'},
-          {key:12,Id:'添加秒批到账列表'},
-          {key:13,Id:'添加再看看列表'},
-        ],
-        electValue:'产品列表',
-        electData1:[],
         electValue1:'',
+        electValue:'编辑新品推荐列表',
         ruleForm: {
           image: '点击上传logo',
-          image1: '点击上传logo',
           name: '',
           region: '',
           listLogo: '',
@@ -106,32 +78,33 @@
           date2: '',
           delivery: false,
           resource: '',
-          remark: '',
-          position: '',
-          h5Url: '',
+          desc: '',
+          address: '',
+          href: '',
           company: '',
           description1:'',
           description2:'',
           description3:'',
           description4:'',
           description5:'',
-          detailsBorrowing:'',
-          detailsTips:'',
-          accountId:'',
-          filename:'',
-          filename1:''
+          position:'',
+          detail:'',
+          electValue:'',
+          electValue1:'',
         },
         rules: {
-          name: [
+          pname: [
             {required: true, message: '请输入产品名称', trigger: 'blur'},
 
           ],
-          position: [
-            {required: true, message: '请输入位置信息', trigger: 'blur'},
-            {min: 1, max: 1, message: '位置信息', trigger: 'blur'}
+          electValue: [
+            {required: true, message: '请选择产品分类', trigger: 'change'}
           ],
-          h5Url: [
-            {required: true, message: '产品链接', trigger: 'change'}
+          position: [
+            {required: true, message: '请输入位置信息', trigger: 'blur'}
+          ],
+          href: [
+            {required: true, message: '请输入banner图连接地址', trigger: 'change'}
           ],
           description1: [
             {required: true, message: '请输入文案', trigger: 'change'}
@@ -148,24 +121,30 @@
           description5: [
             {required: true, message: '请输入文案', trigger: 'change'}
           ],
-          filename: [
-            {required: true, message: '请上传列表logo图片', trigger: 'change'}
+          detailLogo: [
+            {required: true, message: '请上传图片', trigger: 'change'}
           ],
-          filename1: [
-            {required: true, message: '请上传详情logo图片', trigger: 'change'}
-          ],
-          electValue1: [
-            {required: true, message: '请选择账户', trigger: 'change'}
-          ],
-          remark: [
-            {required: true, message: '请填写对此产品的备注信息', trigger: 'blur'}
+          listLogo: [
+            {required: true, message: '请上传图片', trigger: 'change'}
           ],
           detailsTips: [
-            {required: true, message: '请填写对此产品的温馨提示', trigger: 'blur'}
+            {required: true, message: '请填写温馨提示', trigger: 'change'}
           ],
-          detailsBorrowing:[
+          desc: [
+            {required: true, message: '请填写对此产品的备注信息', trigger: 'blur'}
+          ],
+          detailsBorrowing: [
             {required: true, message: '请填写对此产品的借款详情', trigger: 'blur'}
-          ]
+          ],
+          detail:[
+            {required: true, message: '请填写对此产品的借款详情', trigger: 'blur'}
+          ],
+          h5Url:[
+            {required: true, message: '请填写对此产品的链接地址', trigger: 'blur'}
+          ],
+          remark:[
+            {required: true, message: '请填写对此产品的备注信息', trigger: 'blur'}
+          ],
         }
       };
     },
@@ -174,13 +153,19 @@
         this.$refs[formName].validate((valid) => {
           if (valid) {
             var param = new FormData();  // 创建form对象
-            param.append('file1', this.ruleForm.filename)  // 通过append向form对象添加数据
-            param.append('file2', this.ruleForm.filename1)  // 通过append向form对象添加数据
-            param.append('pname', this.ruleForm.name) // 添加form表单中其他数据
-            param.append('type', 4) // 添加form表单中其他数据
+            if(this.ruleForm.filename==null){
+            }else {
+              param.append('file1', this.ruleForm.filename)  // 通过append向form对象添加数据
+            }
+            if(this.ruleForm.filename1==null){
+            }else {
+              param.append('file2', this.ruleForm.filename1)  // 通过append向form对象添加数据
+            }
+            param.append('pname', this.ruleForm.pname) // 添加form表单中其他数据
+            param.append('type', 11) // 添加form表单中其他数据
             param.append('h5Url', this.ruleForm.h5Url) // 添加form表单中其他数据
             param.append('remark', this.ruleForm.remark) // 添加form表单中其他数据
-            param.append('accountId', this.ruleForm.electValue1) // 添加form表单中其他数据
+            param.append('accountId', this.ruleForm.accountId) // 添加form表单中其他数据
             param.append('position', this.ruleForm.position) // 添加form表单中其他数据
             param.append('description1', this.ruleForm.description1) // 添加form表单中其他数据
             param.append('description2', this.ruleForm.description2) // 添加form表单中其他数据
@@ -189,9 +174,10 @@
             param.append('description5', this.ruleForm.description5) // 添加form表单中其他数据
             param.append('detailsTips', this.ruleForm.detailsTips) // 添加form表单中其他数据
             param.append('detailsBorrowing', this.ruleForm.detailsBorrowing) // 添加form表单中其他数据
+            param.append('id', this.id) // 添加form表单中其他数据
             axios({
               method:"POST",
-              url:"http://"+this.baseUrl+"/flowPool/admin/product/addProduct",
+              url:"http://"+this.baseUrl+"/flowPool/admin/product/updateProductById",
               headers:{
                 'Content-Type':'application/x-www-form-urlencoded',
                 'Authorization': localStorage.token
@@ -230,7 +216,6 @@
         this.ruleForm.image1 = name;
       },
       selectChange(){
-        localStorage.name=this.ruleForm.name;
         console.log(this.electValue);
         if(this.electValue=="1"){
           this.$router.push('/addProduct');
@@ -238,40 +223,29 @@
           this.$router.push('/addIconProduct');
         }else if(this.electValue=="3"){
           this.$router.push('/addBannerProduct');
-        }else if(this.electValue=="4"){
+        }else {
           this.$router.push('/addProductList');
-        }else if(this.electValue=="5"){
-          this.$router.push('/addIconProduct2');
-        }else if(this.electValue=="6"){
-          this.$router.push('/addIconProduct3');
-        }else if(this.electValue=="7"){
-          this.$router.push('/addIconProduct4');
-        }else if(this.electValue=="8"){
-          this.$router.push('/addHomeProductList');
-        }else if(this.electValue=="9"){
-          this.$router.push('/addIcon1List');
-        }else if(this.electValue=="10"){
-          this.$router.push('/addIcon2List');
-        }else if(this.electValue=="11"){
-          this.$router.push('/addIcon3List');
-        }else if(this.electValue=="12"){
-          this.$router.push('/addIcon4List');
-        }else if(this.electValue=="13"){
-          this.$router.push('/addLookList');
         }
       },
-      getProductList(){
+      getProductList(data){
         axios({
           method:"get",
-          url:"http://"+this.baseUrl+"/flowPool/admin/product/toAddProduct",
+          url:"http://"+this.baseUrl+"/flowPool/admin/product/queryProductById",
           headers:{
             'Content-Type':'application/x-www-form-urlencoded',
             'Authorization': localStorage.token
           },
+          params:{
+            id:this.id
+          }
         }).then((res)=>{
           if(res.data.msgCd=='ZYCASH-200'){
-            this.electData1= res.data.body.accountList;
-            console.log(this.electData1);
+            this.ruleForm= res.data.body.product;
+            this.ruleForm.image= "如需修改请点击上传";
+            this.ruleForm.image1= "如需修改请点击上传";
+            this.ruleForm.pname= res.data.body.product.pname;
+            this.ruleForm.electValue1= res.data.body.product.accountName;
+            this.ruleForm.accountId= res.data.body.product.accountId;
           }else {
             this.$message.error(res.data.msgInfo);
           }
@@ -279,8 +253,8 @@
       }
     },
     mounted:function () {
-      this.ruleForm.name=localStorage.name;
-      this.getProductList();
+      this.id=this.$route.params.id;
+      this.getProductList(this.id);
     }
   }
 </script>

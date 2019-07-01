@@ -26,10 +26,10 @@
           </el-input>
           <el-button type="primary" icon="el-icon-search" @click="searchBtn">搜索</el-button>
           <el-button type="primary" @click="daoBtn">导出<i class="el-icon-download el-icon--right"></i></el-button>
-          <!--<a :href="http://192.168.20.216:9999/super/admin/productinfo/export?name="++'&startDate='+this.startTime+'&endDate='+this.endTime+'&token='+localStorage.token">导出</a>-->
-          <!--<a href="http://192.168.20.216:9999/super/admin/productinfo/export?name"+{{}}+>导出</a>-->
-          <!--<a v-bind:href="['http://192.168.20.216:9999/super/admin/productinfo/export?name'+this.value8+'&startDate='+this.startTime+'&endDate='+this.endTime+'&token='+localStorage.token]">导出</a>-->
-          <!--<a :href="'http://192.168.20.216:9999/super/admin/productinfo/export?name'+this.value8+'&startDate='+this.startTime+'&endDate='+this.endTime+'&token='+this.token">这是一个动态链接</a>-->
+          <!--<a :href="http://192.168.20.216:9999/flowPool/admin/productinfo/export?name="++'&startDate='+this.startTime+'&endDate='+this.endTime+'&token='+localStorage.token">导出</a>-->
+          <!--<a href="http://192.168.20.216:9999/flowPool/admin/productinfo/export?name"+{{}}+>导出</a>-->
+          <!--<a v-bind:href="['http://192.168.20.216:9999/flowPool/admin/productinfo/export?name'+this.value8+'&startDate='+this.startTime+'&endDate='+this.endTime+'&token='+localStorage.token]">导出</a>-->
+          <!--<a :href="'http://192.168.20.216:9999/flowPool/admin/productinfo/export?name'+this.value8+'&startDate='+this.startTime+'&endDate='+this.endTime+'&token='+this.token">这是一个动态链接</a>-->
         </div>
       </div>
       <template>
@@ -191,8 +191,8 @@
       daoBtn(){
         axios({
           method:"get",
-          // url:"http://192.168.20.216:9999/super/admin/productinfo/export",
-          url:"http://"+this.baseUrl+"/super/admin/productinfo/exportToken",
+          // url:"http://192.168.20.216:9999/flowPool/admin/productinfo/export",
+          url:"http://"+this.baseUrl+"/flowPool/admin/productinfo/exportToken",
           headers:{
             "content-type":"application/x-download;charset=utf-8",
             "content-disposition":"attachment;filename=total.xls",
@@ -219,7 +219,7 @@
       getProductList(data1,data2,data3,data4,data5){
         axios({
           method:"get",
-          url:"http://"+this.baseUrl+"/super/admin/productinfo/getProductInfoListByName",
+          url:"http://"+this.baseUrl+"/flowPool/admin/productinfo/getProductInfoListByName",
           headers:{
             'Content-Type':'application/x-www-form-urlencoded',
             'Authorization': localStorage.token
@@ -232,7 +232,7 @@
             endDate: data5,
           }
         }).then((res)=>{
-          if(res.data.msgCd=='ZYCASH-SUPERMARKET-200'){
+          if(res.data.msgCd=='ZYCASH-200'){
             this.tableData=res.data.body.list;
             this.proTotal=res.data.body.total;
             this.pageSize=res.data.body.pageSize;
@@ -247,7 +247,7 @@
         if (!data) {
           return
         }
-        let url = "http://"+this.baseUrl+"/super/admin/productinfo/export?name="+this.value8+"&startDate="+this.startTime+"&endDate="+this.endTime+"&token="+this.token;
+        let url = "http://"+this.baseUrl+"/flowPool/admin/productinfo/export?name="+this.value8+"&startDate="+this.startTime+"&endDate="+this.endTime+"&token="+this.token;
         let link = document.createElement('a');
         link.style.display = 'none';
         link.href = url;

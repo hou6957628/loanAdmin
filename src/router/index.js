@@ -23,6 +23,19 @@ import editorIconProduct3 from '@/components/editorIconProduct3'
 import editorIconProduct4 from '@/components/editorIconProduct4'
 import editorProduct from '@/components/editorProduct'
 import editorProductList from '@/components/editorProductList'
+import pageStatisticalCenter from '@/components/pageStatisticalCenter'
+//小锦鲤
+import addIcon1List from '@/components/flowPool/addIcon1List'
+import addIcon2List from '@/components/flowPool/addIcon2List'
+import addIcon3List from '@/components/flowPool/addIcon3List'
+import addIcon4List from '@/components/flowPool/addIcon4List'
+import addLookList from '@/components/flowPool/addLookList'
+import editorIcon1List from '@/components/flowPool/editorIcon1List'
+import editorIcon2List from '@/components/flowPool/editorIcon2List'
+import editorIcon3List from '@/components/flowPool/editorIcon3List'
+import editorIcon4List from '@/components/flowPool/editorIcon4List'
+import editorLookList from '@/components/flowPool/editorLookList'
+
 import Recharge from '@/components/Recharge'
 import axios from 'axios'
 import qs from 'qs';
@@ -63,7 +76,8 @@ axios.interceptors.response.use(
   });
 
 Vue.prototype.baseUrl="60.205.216.141";
-// Vue.prototype.baseUrl="39.107.228.38:31999";
+// Vue.prototype.baseUrl="47.93.234.167:31999";
+// Vue.prototype.baseUrl="192.168.20.190:2881";
 // Vue.prototype.baseUrl="192.168.20.216:9999";
 Vue.prototype.uurl="window.location.origin";
 
@@ -284,6 +298,94 @@ const vueRouter = new Router({
         requireAuth: true
       },
       component: editorProductList
+    },
+    {
+      path: '/pageStatisticalCenter',
+      name: 'pageStatisticalCenter',
+      meta: {
+        requireAuth: true
+      },
+      component: pageStatisticalCenter
+    },
+    {
+      path: '/addIcon1List',
+      name: 'addIcon1List',
+      meta: {
+        requireAuth: true
+      },
+      component: addIcon1List
+    },
+    {
+      path: '/addIcon2List',
+      name: 'addIcon2List',
+      meta: {
+        requireAuth: true
+      },
+      component: addIcon2List
+    },
+    {
+      path: '/addIcon3List',
+      name: 'addIcon3List',
+      meta: {
+        requireAuth: true
+      },
+      component: addIcon3List
+    },
+    {
+      path: '/addIcon4List',
+      name: 'addIcon4List',
+      meta: {
+        requireAuth: true
+      },
+      component: addIcon4List
+    },
+    {
+      path: '/addLookList',
+      name: 'addLookList',
+      meta: {
+        requireAuth: true
+      },
+      component: addLookList
+    },
+    {
+      path: '/editorIcon1List/:id',
+      name: 'editorIcon1List',
+      meta: {
+        requireAuth: true
+      },
+      component: editorIcon1List
+    },
+    {
+      path: '/editorIcon2List/:id',
+      name: 'editorIcon2List',
+      meta: {
+        requireAuth: true
+      },
+      component: editorIcon2List
+    },
+    {
+      path: '/editorIcon3List/:id',
+      name: 'editorIcon3List',
+      meta: {
+        requireAuth: true
+      },
+      component: editorIcon3List
+    },
+    {
+      path: '/editorIcon4List/:id',
+      name: 'editorIcon4List',
+      meta: {
+        requireAuth: true
+      },
+      component: editorIcon4List
+    },
+    {
+      path: '/editorLookList/:id',
+      name: 'editorLookList',
+      meta: {
+        requireAuth: true
+      },
+      component: editorLookList
     },
   ],
 

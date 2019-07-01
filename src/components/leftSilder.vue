@@ -58,6 +58,10 @@
               <i class="el-icon-menu"></i>
               <span slot="title">统计中心</span>
             </el-menu-item>
+            <el-menu-item index="/pageStatisticalCenter">
+              <i class="el-icon-menu"></i>
+              <span slot="title">页面统计</span>
+            </el-menu-item>
             <el-menu-item index="/accountCenter">
               <i class="el-icon-setting"></i>
               <span slot="title">账户中心</span>
