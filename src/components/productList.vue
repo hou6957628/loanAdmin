@@ -6,7 +6,7 @@
     </el-breadcrumb>
     <div class="operationContent">
       <el-button class="upLoadBtn" @click="toAddProduct()" type="primary">添加产品&nbsp;<i class="el-icon-upload el-icon-circle-plus"></i></el-button>
-      <el-select class="select" v-model="electValue" placeholder="请选择" @change="selectChange">
+      <el-select class="select" v-model="electValue" placeholder="请选择" @change="selectChange($event,electData)">
         <el-option
           v-for="item in electData"
           :key="item.key"
@@ -89,6 +89,7 @@
             <el-button v-if="scope.row.type==11" @click="bian11(scope.row)" type="text" size="small">编辑</el-button>
             <el-button v-if="scope.row.type==12" @click="bian12(scope.row)" type="text" size="small">编辑</el-button>
             <el-button v-if="scope.row.type==13" @click="bian13(scope.row)" type="text" size="small">编辑</el-button>
+            <el-button v-if="scope.row.type==14" @click="bian14(scope.row)" type="text" size="small">编辑</el-button>
             <el-button v-if="scope.row.enabled" @click="obtainedProduct(scope.row)" type="text" size="small">下架</el-button>
             <el-button v-if="!scope.row.enabled" @click="obtainedProduct(scope.row)" type="text" size="small">上架</el-button>
             <el-button @click="handleClick(scope.row)" type="text" size="small">统计</el-button>
@@ -144,52 +145,67 @@
         this.getProductList(val,this.nowPageSizes,this.input10,this.electValue);
       },
       bian4(row){
-        console.log(row.id);
+        localStorage.electValue=this.electValue;
+        localStorage.inputText1=this.input10;
         var id=row.id;
         this.$router.push({
           path: `/editorProductList/${id}`,
         });
       },
       bian3(row){
-        console.log(row.id);
+        localStorage.electValue=this.electValue;
+        localStorage.inputText1=this.input10;
         var id=row.id;
         this.$router.push({
           path: `/editorBannerProduct/${id}`,
         });
       },
       bian9(row){
-        console.log(row.id);
+        localStorage.electValue=this.electValue;
+        localStorage.inputText1=this.input10;
         var id=row.id;
         this.$router.push({
           path: `/editorIcon1List/${id}`,
         });
       },
       bian10(row){
-        console.log(row.id);
+        localStorage.electValue=this.electValue;
+        localStorage.inputText1=this.input10;
         var id=row.id;
         this.$router.push({
           path: `/editorIcon2List/${id}`,
         });
       },
       bian11(row){
-        console.log(row.id);
+        localStorage.electValue=this.electValue;
+        localStorage.inputText1=this.input10;
         var id=row.id;
         this.$router.push({
           path: `/editorIcon3List/${id}`,
         });
       },
       bian12(row){
-        console.log(row.id);
+        localStorage.electValue=this.electValue;
+        localStorage.inputText1=this.input10;
         var id=row.id;
         this.$router.push({
           path: `/editorIcon4List/${id}`,
         });
       },
       bian13(row){
-        console.log(row.id);
+        localStorage.electValue=this.electValue;
+        localStorage.inputText1=this.input10;
         var id=row.id;
         this.$router.push({
           path: `/editorLookList/${id}`,
+        });
+      },
+      bian14(row){
+        localStorage.electValue=this.electValue;
+        localStorage.inputText1=this.input10;
+        var id=row.id;
+        this.$router.push({
+          path: `/editorIcon5List/${id}`,
         });
       },
       toAddProduct(){
@@ -198,13 +214,6 @@
         });
       },
       getProductList(data1,data2,data3,data4,){
-        // var suju =  qs.stringify({
-        //   pageNum: data1,
-        //   pageSize: data2,
-        //   pname: data3,
-        //   accountName: data4,
-        //   typeId: data5,
-        // });
         axios({
           method:"get",
           url:"http://"+this.baseUrl+"/flowPool/admin/product/list",
@@ -229,8 +238,12 @@
           }
         })
       },
-      selectChange(){
-        console.log(this.electValue);
+      selectChange(vId,list){
+        let obj = {};
+        obj = list.find((item)=>{
+          return item.key === vId;
+        });
+        localStorage.electName=obj.Id;
         this.getProductList(1,10,null,this.electValue);
       },
       searchProduct(){
@@ -264,8 +277,15 @@
       },
     },
     mounted:function () {
-      this.input10=this.$route.params.name;
-      this.getProductList(1,10,this.input10,null);
+      console.log(localStorage.inputText1);
+      if(localStorage.inputText1==undefined){
+        this.input10=null
+      }
+      else if(this.$route.params.name){
+        this.input10=this.$route.params.name
+      }
+      this.input10=localStorage.inputText1;
+      this.getProductList(1,10,this.input10,localStorage.electValue);
     },
     data() {
       return {
@@ -276,9 +296,10 @@
         pageNum: null,
         proTotal:null,
         pageSize:null,
-        pageSizes:[10,6,5],
+        pageSizes:[10,20,30],
         nowPageSizes:10,
         electData:[
+          {key:'',Id:'全部'},
           {key:3,Id:'首页banner'},
           {key:4,Id:'产品列表'},
           {key:9,Id:'添加大额分期列表'},
@@ -286,6 +307,7 @@
           {key:11,Id:'添加新品推荐列表'},
           {key:12,Id:'添加秒批到账列表'},
           {key:13,Id:'添加再看看列表'},
+          {key:14,Id:'添加热门推荐列表'},
         ],
         electValue:''
       }

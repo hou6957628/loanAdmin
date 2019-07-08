@@ -2,7 +2,7 @@
   <div class="content">
     <el-breadcrumb class="fs-16" separator-class="el-icon-arrow-right">
       <el-breadcrumb-item :to="{ path: '/productList' }">产品中心</el-breadcrumb-item>
-      <el-breadcrumb-item>添加再看看列表</el-breadcrumb-item>
+      <el-breadcrumb-item>添加热门推荐列表</el-breadcrumb-item>
     </el-breadcrumb>
     <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm">
       <el-form-item label="产品名称" prop="name">
@@ -37,6 +37,9 @@
       </el-form-item>
       <el-form-item label="文案四" prop="description5">
         <el-input v-model="ruleForm.description5" placeholder="例: 请输入文案内容"></el-input>
+      </el-form-item>
+      <el-form-item label="已申请人数" prop="applyNumber">
+        <el-input v-model="ruleForm.applyNumber" placeholder="例: 100"></el-input>
       </el-form-item>
       <el-form-item label="产品链接" prop="h5Url">
         <el-input v-model="ruleForm.h5Url" placeholder="例: 请输入产品链接"></el-input>
@@ -80,7 +83,7 @@
           {key:13,Id:'添加再看看列表'},
           {key:14,Id:'添加热门推荐列表'},
         ],
-        electValue:'添加再看看列表',
+        electValue:'添加大额分期列表',
         electData1:[],
         electValue1:'',
         ruleForm: {
@@ -103,6 +106,7 @@
           description5:'',
           accountId:'',
           filename:'',
+          applyNumber:'',
         },
         rules: {
           name: [
@@ -117,16 +121,19 @@
             {required: true, message: '产品链接', trigger: 'change'}
           ],
           description1: [
-            {required: true, message: '请输入文案', trigger: 'change'}
+            {required: true, message: '请输入文案1', trigger: 'change'}
           ],
           description2: [
-            {required: true, message: '请输入文案', trigger: 'change'}
+            {required: true, message: '请输入文案2', trigger: 'change'}
           ],
           description3: [
-            {required: true, message: '请输入文案', trigger: 'change'}
+            {required: true, message: '请输入文案3', trigger: 'change'}
           ],
           description5: [
-            {required: true, message: '名称下文案', trigger: 'change'}
+            {required: true, message: '请输入文案5', trigger: 'change'}
+          ],
+          applyNumber: [
+            {required: true, message: '请输入已申请人数', trigger: 'change'}
           ],
           filename: [
             {required: true, message: '请上传列表logo图片', trigger: 'change'}
@@ -145,17 +152,18 @@
         this.$refs[formName].validate((valid) => {
           if (valid) {
             var param = new FormData();  // 创建form对象
-            param.append('file1', this.ruleForm.filename)  // 通过append向form对象添加数据
-            param.append('pname', this.ruleForm.name) // 添加form表单中其他数据
-            param.append('type', 13) // 添加form表单中其他数据
-            param.append('h5Url', this.ruleForm.h5Url) // 添加form表单中其他数据
-            param.append('remark', this.ruleForm.remark) // 添加form表单中其他数据
-            param.append('accountId', this.ruleForm.electValue1) // 添加form表单中其他数据
-            param.append('position', this.ruleForm.position) // 添加form表单中其他数据
-            param.append('description1', this.ruleForm.description1) // 添加form表单中其他数据
-            param.append('description2', this.ruleForm.description2) // 添加form表单中其他数据
-            param.append('description3', this.ruleForm.description3) // 添加form表单中其他数据
-            param.append('description5', this.ruleForm.description5) // 添加form表单中其他数据
+            param.append('file1', this.ruleForm.filename);
+            param.append('pname', this.ruleForm.name);
+            param.append('type', 14);
+            param.append('h5Url', this.ruleForm.h5Url);
+            param.append('remark', this.ruleForm.remark);
+            param.append('accountId', this.ruleForm.electValue1);
+            param.append('position', this.ruleForm.position);
+            param.append('applyNumber', this.ruleForm.applyNumber);
+            param.append('description1', this.ruleForm.description1);
+            param.append('description2', this.ruleForm.description2);
+            param.append('description3', this.ruleForm.description3);
+            param.append('description5', this.ruleForm.description5);
             axios({
               method:"POST",
               url:"http://"+this.baseUrl+"/flowPool/admin/product/addProduct",

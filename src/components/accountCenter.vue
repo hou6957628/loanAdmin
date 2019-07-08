@@ -254,7 +254,7 @@
         pageNum: null,
         proTotal:null,
         pageSize:null,
-        pageSizes:[10,30,50],
+        pageSizes:[10,20,30],
         nowPageSizes:10,
         proName: '',
         accountName: '',

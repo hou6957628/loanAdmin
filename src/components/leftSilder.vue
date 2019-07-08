@@ -58,6 +58,14 @@
               <i class="el-icon-menu"></i>
               <span slot="title">统计中心</span>
             </el-menu-item>
+            <el-menu-item index="/channelLatitude">
+              <i class="el-icon-tickets"></i>
+              <span slot="title">渠道纬度</span>
+            </el-menu-item>
+            <el-menu-item index="/productLatitude">
+              <i class="el-icon-tickets"></i>
+              <span slot="title">产品纬度</span>
+            </el-menu-item>
             <el-menu-item index="/pageStatisticalCenter">
               <i class="el-icon-menu"></i>
               <span slot="title">页面统计</span>

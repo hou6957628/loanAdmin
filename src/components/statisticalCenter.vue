@@ -95,6 +95,11 @@
             width="120">
           </el-table-column>
           <el-table-column
+            prop="buttonNumber"
+            label="按钮点击数"
+            width="100">
+          </el-table-column>
+          <el-table-column
             prop="balance"
             label="查看详情"
             width="120">
@@ -136,6 +141,7 @@
   export default {
     methods: {
       handleClick(row) {
+        localStorage.inputText=this.value8;
         var id=row.id;
         if(row.countType==null){
           var countType=1;
@@ -259,7 +265,10 @@
     mounted:function () {
       this.id=this.$route.params.id;
       this.token=localStorage.token;
-      this.getProductList(1,10);
+      this.startTime=this.dateFormatCustom(new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate()-2, 0, 0, 0));
+      this.endTime=this.dateFormatCustom(new Date());
+      this.getProductList(1,10,localStorage.inputText,this.startTime,this.endTime);
+      this.value7=[this.startTime,this.endTime];
     },
     data() {
       return {
@@ -295,11 +304,11 @@
         },
         value6: '',
         value7: '',
-        value8:'',
+        value8:localStorage.inputText||'',
         pageNum: null,
         proTotal:null,
         pageSize:null,
-        pageSizes:[10,30,50],
+        pageSizes:[10,20,30],
         nowPageSizes:10,
         proName: '',
         accountName: '',

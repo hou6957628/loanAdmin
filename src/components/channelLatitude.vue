@@ -19,8 +19,12 @@
                         value-format="yyyy-MM-dd HH:mm:ss"
                         @change="logTimeChange()">
         </el-date-picker>
+        <el-input style="width: 300px;margin-left:10%;margin-right: 10px"
+                  placeholder="采量子渠道名称"
+                  v-model="value8"
+                  clearable>
+        </el-input>
         <el-button type="primary" icon="el-icon-search" @click="searchBtn">搜索</el-button>
-        <el-button style="margin-left: 20px" type="primary" @click="download1">导出<i class="el-icon-download el-icon--right"></i></el-button>
       </div>
     </div>
     <template>
@@ -31,32 +35,45 @@
         <el-table-column
           fixed
           prop="statisticsDate"
-          label="统计时间"
+          label="日期"
           :formatter="statisticsDateFormatter"
           width="150">
         </el-table-column>
         <el-table-column
           fixed
-          prop="loanUv"
-          label="贷超UV"
+          prop="subChannelName"
+          label="采量子渠道名称"
           width="150">
         </el-table-column>
         <el-table-column
-          prop="homeUv"
-          label="首页UV"
-          width="150">
+          prop="uvNum11"
+          label="渠道注册数"
+          width="120">
         </el-table-column>
         <el-table-column
-          prop="remark"
-          label="备注"
-          width="220">
+          prop="uvNum"
+          label="列表中产品UV"
+          width="120">
         </el-table-column>
         <el-table-column
-          label="操作"
-          width="100">
-          <template slot-scope="scope">
-            <el-button @click="handleClick(scope.row)" type="text" size="medium">编辑</el-button>
-          </template>
+          prop="detailUv"
+          label="详情里面UV"
+          width="120">
+        </el-table-column>
+        <el-table-column
+          prop="incomeAmount"
+          label="采量消耗金额"
+          width="120">
+        </el-table-column>
+        <el-table-column
+          prop="consumAmount"
+          label="出量收益金额"
+          width="120">
+        </el-table-column>
+        <el-table-column
+          prop="incomeAmount"
+          label="UV成本"
+          width="120">
         </el-table-column>
       </el-table>
     </template>
@@ -93,17 +110,17 @@
     methods: {
       //每页显示多少条
       handleSizeChange(val) {
-        this.getProductList(this.pageNum,val,this.startTime,this.endTime);
+        this.getProductList(this.pageNum,val,this.startTime,this.endTime,this.value8);
         this.nowPageSizes=val;
       },
       //翻页
       handleCurrentChange(val) {
-        this.getProductList(val,this.nowPageSizes,this.startTime,this.endTime);
+        this.getProductList(val,this.nowPageSizes,this.startTime,this.endTime,this.value8);
       },
       //时间查询
       logTimeChange(){
         if(this.value7==''||this.value7==null){
-          this.getProductList(this.pageNum,this.nowPageSizes,null,null);
+          this.getProductList(this.pageNum,this.nowPageSizes,null,null,this.value8);
         }else {
           var startTime=this.value7[0];
           var endTime=this.value7[1];
@@ -146,10 +163,10 @@
         link.click()
       },
       //列表
-      getProductList(data1,data2,data3,data4){
+      getProductList(data1,data2,data3,data4,data5){
         axios({
-          method:"get",
-          url:"http://"+this.baseUrl+"/flowPool/admin/productPage/list",
+          method:"post",
+          url:"http://"+this.baseUrl+"/flowPool/admin/channelSuper/list",
           headers:{
             'Content-Type':'application/x-www-form-urlencoded',
             'Authorization': localStorage.token
@@ -159,6 +176,7 @@
             pageSize: data2,
             startDate: data3,
             endDate: data4,
+            subChannelName: data5,
           }
         }).then((res)=>{
           if(res.data.msgCd=='ZYCASH-200'){
@@ -221,13 +239,13 @@
       },
       //搜素按钮
       searchBtn(){
-        this.getProductList(this.pageNum,this.nowPageSizes,this.startTime,this.endTime);
+        this.getProductList(this.pageNum,this.nowPageSizes,this.startTime,this.endTime,this.value8);
       },
     },
     mounted:function () {
       this.startTime=this.dateFormatCustom(new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate()-2, 0, 0, 0));
       this.endTime=this.dateFormatCustom(new Date());
-      this.getProductList(1,10,this.startTime,this.endTime);
+      this.getProductList(1,10,this.startTime,this.endTime,this.value8);
       this.value7=[this.startTime,this.endTime];
     },
     data() {
@@ -268,6 +286,7 @@
         nowPageSizes:10,
         startTime:'',
         endTime:'',
+        value8:'',
         ruleForm: {
           id: '',
           remark: '',

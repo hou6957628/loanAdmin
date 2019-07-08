@@ -31,20 +31,6 @@
       <el-form-item label="文案四" prop="description5">
         <el-input v-model="ruleForm.description5" placeholder="例: 请输入文案内容"></el-input>
       </el-form-item>
-      <el-form-item label="详情logo" prop="filename2">
-        <a class="upload-file" href="javascript:;" v-model="ruleForm.filename1">{{ruleForm.image1}}<input type="file" accept="image/png,image/gif,image/jpeg" value="上传logo" @change="tirggerFile1($event)"></a>
-        <input class="fileBox" type="hidden" v-model="ruleForm.filename1">
-        <el-alert :closable="false" style="padding: 3px 16px;" title="产品详情页中的logo（110*110）为png或jpg格式" type="success"></el-alert>
-      </el-form-item>
-      <el-form-item label="名称下文案" prop="description4">
-        <el-input v-model="ruleForm.description4" placeholder="例: 请输入文案内容"></el-input>
-      </el-form-item>
-      <el-form-item label="温馨提示" prop="detailsTips">
-        <el-input type="textarea" v-model="ruleForm.detailsTips" placeholder="为对此产品的备注信息"></el-input>
-      </el-form-item>
-      <el-form-item label="借款详情" prop="detailsBorrowing">
-        <el-input type="textarea" v-model="ruleForm.detailsBorrowing" placeholder="为对此产品的备注信息"></el-input>
-      </el-form-item>
       <el-form-item label="产品链接" prop="h5Url">
         <el-input v-model="ruleForm.h5Url" placeholder="例: 请输入产品链接"></el-input>
       </el-form-item>
@@ -85,7 +71,6 @@
           description1:'',
           description2:'',
           description3:'',
-          description4:'',
           description5:'',
           position:'',
           detail:'',
@@ -115,9 +100,6 @@
           description3: [
             {required: true, message: '请输入文案', trigger: 'change'}
           ],
-          description4: [
-            {required: true, message: '请输入文案', trigger: 'change'}
-          ],
           description5: [
             {required: true, message: '请输入文案', trigger: 'change'}
           ],
@@ -127,14 +109,8 @@
           listLogo: [
             {required: true, message: '请上传图片', trigger: 'change'}
           ],
-          detailsTips: [
-            {required: true, message: '请填写温馨提示', trigger: 'change'}
-          ],
           desc: [
             {required: true, message: '请填写对此产品的备注信息', trigger: 'blur'}
-          ],
-          detailsBorrowing: [
-            {required: true, message: '请填写对此产品的借款详情', trigger: 'blur'}
           ],
           detail:[
             {required: true, message: '请填写对此产品的借款详情', trigger: 'blur'}
@@ -170,10 +146,7 @@
             param.append('description1', this.ruleForm.description1) // 添加form表单中其他数据
             param.append('description2', this.ruleForm.description2) // 添加form表单中其他数据
             param.append('description3', this.ruleForm.description3) // 添加form表单中其他数据
-            param.append('description4', this.ruleForm.description4) // 添加form表单中其他数据
             param.append('description5', this.ruleForm.description5) // 添加form表单中其他数据
-            param.append('detailsTips', this.ruleForm.detailsTips) // 添加form表单中其他数据
-            param.append('detailsBorrowing', this.ruleForm.detailsBorrowing) // 添加form表单中其他数据
             param.append('id', this.id) // 添加form表单中其他数据
             axios({
               method:"POST",

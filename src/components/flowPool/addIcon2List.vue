@@ -38,20 +38,6 @@
       <el-form-item label="文案四" prop="description5">
         <el-input v-model="ruleForm.description5" placeholder="例: 请输入文案内容"></el-input>
       </el-form-item>
-      <el-form-item label="详情logo" prop="filename1">
-        <a class="upload-file" href="javascript:;">{{ruleForm.image1}}<input type="file" accept="image/png,image/gif,image/jpeg" value="上传logo" @change="tirggerFile1($event)"></a>
-        <input class="fileBox" type="hidden" v-model="ruleForm.filename1">
-        <el-alert :closable="false" style="padding: 3px 16px;" title="产品详情页中的logo（110*110）格式为png或jpg" type="success"></el-alert>
-      </el-form-item>
-      <el-form-item label="名称下文案" prop="description4">
-        <el-input v-model="ruleForm.description4" placeholder="例: 请输入文案内容"></el-input>
-      </el-form-item>
-      <el-form-item label="温馨提示" prop="detailsTips">
-        <el-input type="textarea" v-model="ruleForm.detailsTips" placeholder="为对此产品的备注信息"></el-input>
-      </el-form-item>
-      <el-form-item label="借款详情" prop="detailsBorrowing">
-        <el-input type="textarea" v-model="ruleForm.detailsBorrowing" placeholder="为对此产品的备注信息"></el-input>
-      </el-form-item>
       <el-form-item label="产品链接" prop="h5Url">
         <el-input v-model="ruleForm.h5Url" placeholder="例: 请输入产品链接"></el-input>
       </el-form-item>
@@ -92,6 +78,7 @@
           {key:11,Id:'添加新品推荐列表'},
           {key:12,Id:'添加秒批到账列表'},
           {key:13,Id:'添加再看看列表'},
+          {key:14,Id:'添加热门推荐列表'},
         ],
         electValue:'添加小额速贷列表',
         electData1:[],
@@ -113,7 +100,6 @@
           description1:'',
           description2:'',
           description3:'',
-          description4:'',
           description5:'',
           detailsBorrowing:'',
           detailsTips:'',
@@ -142,17 +128,11 @@
           description3: [
             {required: true, message: '请输入文案3', trigger: 'change'}
           ],
-          description4: [
-            {required: true, message: '请输入文案4', trigger: 'change'}
-          ],
           description5: [
             {required: true, message: '请输入文案4', trigger: 'change'}
           ],
           filename: [
             {required: true, message: '请上传列表logo图片', trigger: 'change'}
-          ],
-          filename1: [
-            {required: true, message: '请上传详情logo图片', trigger: 'change'}
           ],
           electValue1: [
             {required: true, message: '请选择账户', trigger: 'change'}
@@ -160,12 +140,6 @@
           remark: [
             {required: true, message: '请填写对此产品的备注信息', trigger: 'blur'}
           ],
-          detailsTips: [
-            {required: true, message: '请填写对此产品的温馨提示', trigger: 'blur'}
-          ],
-          detailsBorrowing:[
-            {required: true, message: '请填写对此产品的借款详情', trigger: 'blur'}
-          ]
         }
       };
     },
@@ -258,6 +232,8 @@
           this.$router.push('/addIcon4List');
         }else if(this.electValue=="13"){
           this.$router.push('/addLookList');
+        }else if(this.electValue=="14"){
+          this.$router.push('/addIcon5List');
         }
       },
       getProductList(){

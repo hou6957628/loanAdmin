@@ -31,19 +31,28 @@
       <el-form-item label="文案四" prop="description5">
         <el-input v-model="ruleForm.description5" placeholder="例: 请输入文案内容"></el-input>
       </el-form-item>
-      <el-form-item label="详情logo" prop="filename2">
-        <a class="upload-file" href="javascript:;" v-model="ruleForm.filename1">{{ruleForm.image1}}<input type="file" accept="image/png,image/gif,image/jpeg" value="上传logo" @change="tirggerFile1($event)"></a>
-        <input class="fileBox" type="hidden" v-model="ruleForm.filename1">
-        <el-alert :closable="false" style="padding: 3px 16px;" title="产品详情页中的logo（110*110）为png或jpg格式" type="success"></el-alert>
+      <el-form-item label="已申请人数" prop="applyNumber">
+        <el-input v-model="ruleForm.applyNumber" placeholder="例: 100"></el-input>
       </el-form-item>
-      <el-form-item label="名称下文案" prop="description4">
-        <el-input v-model="ruleForm.description4" placeholder="例: 请输入文案内容"></el-input>
+      <el-form-item label="额度" prop="classifyAmount">
+        <el-select v-model="ruleForm.classifyAmount">
+          <el-option
+            v-for="item in electData2"
+            :key="item.id"
+            :label="item.name"
+            :value="item.id">
+          </el-option>
+        </el-select>
       </el-form-item>
-      <el-form-item label="温馨提示" prop="detailsTips">
-        <el-input type="textarea" v-model="ruleForm.detailsTips" placeholder="为对此产品的备注信息"></el-input>
-      </el-form-item>
-      <el-form-item label="借款详情" prop="detailsBorrowing">
-        <el-input type="textarea" v-model="ruleForm.detailsBorrowing" placeholder="为对此产品的备注信息"></el-input>
+      <el-form-item label="周转时长" prop="classifyTime">
+        <el-select v-model="ruleForm.classifyTime">
+          <el-option
+            v-for="item in electData3"
+            :key="item.id"
+            :label="item.name"
+            :value="item.id">
+          </el-option>
+        </el-select>
       </el-form-item>
       <el-form-item label="产品链接" prop="h5Url">
         <el-input v-model="ruleForm.h5Url" placeholder="例: 请输入产品链接"></el-input>
@@ -68,6 +77,14 @@
     data() {
       return {
         electValue1:'',
+        electData2:[
+          {id:0,name:'小额'},
+          {id:1,name:'大额'},
+        ],
+        electData3:[
+          {id:0,name:'7天周转'},
+          {id:1,name:'长期'},
+        ],
         electValue:'首页产品列表',
         ruleForm: {
           image: '点击上传logo',
@@ -85,12 +102,14 @@
           description1:'',
           description2:'',
           description3:'',
-          description4:'',
           description5:'',
           position:'',
           detail:'',
           electValue:'',
           electValue1:'',
+          applyNumber:'',
+          classifyAmount:'',
+          classifyTime:'',
         },
         rules: {
           pname: [
@@ -115,11 +134,17 @@
           description3: [
             {required: true, message: '请输入文案', trigger: 'change'}
           ],
-          description4: [
-            {required: true, message: '请输入文案', trigger: 'change'}
-          ],
           description5: [
             {required: true, message: '请输入文案', trigger: 'change'}
+          ],
+          applyNumber: [
+            {required: true, message: '请输入已申请人数', trigger: 'change'}
+          ],
+          classifyAmount: [
+            {required: true, message: '请选择额度', trigger: 'change'}
+          ],
+          classifyTime: [
+            {required: true, message: '请选择周转时长', trigger: 'change'}
           ],
           detailLogo: [
             {required: true, message: '请上传图片', trigger: 'change'}
@@ -127,14 +152,8 @@
           listLogo: [
             {required: true, message: '请上传图片', trigger: 'change'}
           ],
-          detailsTips: [
-            {required: true, message: '请填写温馨提示', trigger: 'change'}
-          ],
           desc: [
             {required: true, message: '请填写对此产品的备注信息', trigger: 'blur'}
-          ],
-          detailsBorrowing: [
-            {required: true, message: '请填写对此产品的借款详情', trigger: 'blur'}
           ],
           detail:[
             {required: true, message: '请填写对此产品的借款详情', trigger: 'blur'}
@@ -170,11 +189,11 @@
             param.append('description1', this.ruleForm.description1) // 添加form表单中其他数据
             param.append('description2', this.ruleForm.description2) // 添加form表单中其他数据
             param.append('description3', this.ruleForm.description3) // 添加form表单中其他数据
-            param.append('description4', this.ruleForm.description4) // 添加form表单中其他数据
             param.append('description5', this.ruleForm.description5) // 添加form表单中其他数据
-            param.append('detailsTips', this.ruleForm.detailsTips) // 添加form表单中其他数据
-            param.append('detailsBorrowing', this.ruleForm.detailsBorrowing) // 添加form表单中其他数据
             param.append('id', this.id) // 添加form表单中其他数据
+            param.append('applyNumber', this.ruleForm.applyNumber);
+            param.append('classifyAmount', this.ruleForm.classifyAmount);
+            param.append('classifyTime', this.ruleForm.classifyTime);
             axios({
               method:"POST",
               url:"http://"+this.baseUrl+"/flowPool/admin/product/updateProductById",

@@ -24,16 +24,20 @@ import editorIconProduct4 from '@/components/editorIconProduct4'
 import editorProduct from '@/components/editorProduct'
 import editorProductList from '@/components/editorProductList'
 import pageStatisticalCenter from '@/components/pageStatisticalCenter'
+import channelLatitude from '@/components/channelLatitude'
+import productLatitude from '@/components/productLatitude'
 //小锦鲤
 import addIcon1List from '@/components/flowPool/addIcon1List'
 import addIcon2List from '@/components/flowPool/addIcon2List'
 import addIcon3List from '@/components/flowPool/addIcon3List'
 import addIcon4List from '@/components/flowPool/addIcon4List'
+import addIcon5List from '@/components/flowPool/addIcon5List'
 import addLookList from '@/components/flowPool/addLookList'
 import editorIcon1List from '@/components/flowPool/editorIcon1List'
 import editorIcon2List from '@/components/flowPool/editorIcon2List'
 import editorIcon3List from '@/components/flowPool/editorIcon3List'
 import editorIcon4List from '@/components/flowPool/editorIcon4List'
+import editorIcon5List from '@/components/flowPool/editorIcon5List'
 import editorLookList from '@/components/flowPool/editorLookList'
 
 import Recharge from '@/components/Recharge'
@@ -308,6 +312,22 @@ const vueRouter = new Router({
       component: pageStatisticalCenter
     },
     {
+      path: '/productLatitude',
+      name: 'productLatitude',
+      meta: {
+        requireAuth: true
+      },
+      component: productLatitude
+    },
+    {
+      path: '/channelLatitude',
+      name: 'channelLatitude',
+      meta: {
+        requireAuth: true
+      },
+      component: channelLatitude
+    },
+    {
       path: '/addIcon1List',
       name: 'addIcon1List',
       meta: {
@@ -338,6 +358,14 @@ const vueRouter = new Router({
         requireAuth: true
       },
       component: addIcon4List
+    },
+    {
+      path: '/addIcon5List',
+      name: 'addIcon5List',
+      meta: {
+        requireAuth: true
+      },
+      component: addIcon5List
     },
     {
       path: '/addLookList',
@@ -378,6 +406,14 @@ const vueRouter = new Router({
         requireAuth: true
       },
       component: editorIcon4List
+    },
+    {
+      path: '/editorIcon5List/:id',
+      name: 'editorIcon5List',
+      meta: {
+        requireAuth: true
+      },
+      component: editorIcon5List
     },
     {
       path: '/editorLookList/:id',
