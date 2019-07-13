@@ -7,6 +7,8 @@ const path = require('path')
 const baseWebpackConfig = require('./webpack.base.conf')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+//引入自用的插件
+const MyPlugin = require("../myPlugin.js");
 const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin')
 const portfinder = require('portfinder')
 
@@ -56,6 +58,9 @@ const devWebpackConfig = merge(baseWebpackConfig, {
       filename: 'index.html',
       template: 'index.html',
       inject: true
+    }),
+    new MyPlugin({
+      text:"123456"
     }),
     // copy custom static assets
     new CopyWebpackPlugin([

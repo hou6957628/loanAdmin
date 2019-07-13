@@ -54,6 +54,46 @@
           </el-option>
         </el-select>
       </el-form-item>
+      <el-form-item label="年龄分类" prop="classifyAge">
+        <el-select v-model="ruleForm.classifyAge">
+          <el-option
+            v-for="item in electData4"
+            :key="item.id"
+            :label="item.name"
+            :value="item.id">
+          </el-option>
+        </el-select>
+      </el-form-item>
+      <el-form-item label="借款金额" prop="classifyCapital">
+        <el-select v-model="ruleForm.classifyCapital">
+          <el-option
+            v-for="item in electData5"
+            :key="item.id"
+            :label="item.name"
+            :value="item.id">
+          </el-option>
+        </el-select>
+      </el-form-item>
+      <el-form-item label="职业分类" prop="classifyOccupation">
+        <el-select v-model="ruleForm.classifyOccupation">
+          <el-option
+            v-for="item in electData6"
+            :key="item.id"
+            :label="item.name"
+            :value="item.id">
+          </el-option>
+        </el-select>
+      </el-form-item>
+      <el-form-item label="信用分类" prop="classifyCredit">
+        <el-select v-model="ruleForm.classifyCredit">
+          <el-option
+            v-for="item in electData7"
+            :key="item.id"
+            :label="item.name"
+            :value="item.id">
+          </el-option>
+        </el-select>
+      </el-form-item>
       <el-form-item label="产品链接" prop="h5Url">
         <el-input v-model="ruleForm.h5Url" placeholder="例: 请输入产品链接"></el-input>
       </el-form-item>
@@ -85,7 +125,32 @@
           {id:0,name:'7天周转'},
           {id:1,name:'长期'},
         ],
-        electValue:'首页产品列表',
+        electData4:[
+          {id:0,name:'22-35'},
+          {id:1,name:'36-45'},
+          {id:2,name:'45-55'},
+          {id:3,name:'55岁以上'},
+        ],
+        electData5:[
+          {id:0,name:'2000-3000'},
+          {id:1,name:'3000-5000'},
+          {id:2,name:'5000-8000'},
+          {id:3,name:'8000-1万'},
+          {id:4,name:'1万-5万'},
+          {id:5,name:'5万-10万'},
+        ],
+        electData6:[
+          {id:0,name:'工薪族'},
+          {id:1,name:'无固定职业'},
+          {id:2,name:'个体户'},
+          {id:3,name:'企业主'},
+        ],
+        electData7:[
+          {id:0,name:'借过多次，被拒多次'},
+          {id:1,name:'借过网贷，信用良好'},
+          {id:2,name:'未借过网贷'},
+        ],
+        electValue:'产品列表',
         ruleForm: {
           image: '点击上传logo',
           name: '',
@@ -110,6 +175,10 @@
           applyNumber:'',
           classifyAmount:'',
           classifyTime:'',
+          classifyAge:0,
+          classifyCapital:0,
+          classifyOccupation:0,
+          classifyCredit:0,
         },
         rules: {
           pname: [
@@ -194,6 +263,10 @@
             param.append('applyNumber', this.ruleForm.applyNumber);
             param.append('classifyAmount', this.ruleForm.classifyAmount);
             param.append('classifyTime', this.ruleForm.classifyTime);
+            param.append('classifyAge', this.ruleForm.classifyAge);
+            param.append('classifyCapital', this.ruleForm.classifyCapital);
+            param.append('classifyOccupation', this.ruleForm.classifyOccupation);
+            param.append('classifyCredit', this.ruleForm.classifyCredit);
             axios({
               method:"POST",
               url:"http://"+this.baseUrl+"/flowPool/admin/product/updateProductById",

@@ -35,12 +35,12 @@
         <el-table-column
           prop="pname"
           label="产品名称"
-          min-width="120">
+          width="150">
         </el-table-column>
         <el-table-column
           prop="remark"
           label="备注"
-          width="300">
+          width="150">
         </el-table-column>
         <el-table-column
           prop="typeText"
@@ -278,19 +278,22 @@
     },
     mounted:function () {
       console.log(localStorage.inputText1);
-      if(localStorage.inputText1==undefined){
-        this.input10=null
+      console.log(localStorage.electValue);
+      if(localStorage.inputText1=="undefined"){
+        this.input10=''
       }
       else if(this.$route.params.name){
         this.input10=this.$route.params.name
+      }else {
+        this.input10=localStorage.inputText1;
       }
-      this.input10=localStorage.inputText1;
-      this.getProductList(1,10,this.input10,localStorage.electValue);
+      // this.electValue=localStorage.electValue||'';
+      this.getProductList(1,10,this.input10,this.electValue);
     },
     data() {
       return {
         tableData: [],
-        input10: '',
+        input10: null,
         options: [],
         typeText: '211313',
         pageNum: null,

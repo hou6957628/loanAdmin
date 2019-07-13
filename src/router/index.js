@@ -39,6 +39,8 @@ import editorIcon3List from '@/components/flowPool/editorIcon3List'
 import editorIcon4List from '@/components/flowPool/editorIcon4List'
 import editorIcon5List from '@/components/flowPool/editorIcon5List'
 import editorLookList from '@/components/flowPool/editorLookList'
+import trapezoidal from '@/components/trapezoidal'
+import IntoStatistical from '@/components/IntoStatistical'
 
 import Recharge from '@/components/Recharge'
 import axios from 'axios'
@@ -79,14 +81,13 @@ axios.interceptors.response.use(
     return Promise.reject(error.response)   // 返回接口返回的错误信息
   });
 
-Vue.prototype.baseUrl="60.205.216.141";
-// Vue.prototype.baseUrl="47.93.234.167:31999";
+// Vue.prototype.baseUrl="60.205.216.141";
+Vue.prototype.baseUrl="47.93.234.167:31999";
 // Vue.prototype.baseUrl="192.168.20.190:2881";
 // Vue.prototype.baseUrl="192.168.20.216:9999";
 Vue.prototype.uurl="window.location.origin";
 
 const vueRouter = new Router({
-  mode: 'history',
   routes: [
     {
       path: '*',
@@ -422,6 +423,22 @@ const vueRouter = new Router({
         requireAuth: true
       },
       component: editorLookList
+    },
+    {
+      path: '/trapezoidal/:name1/:name2',
+      name: 'trapezoidal',
+      meta: {
+        requireAuth: true
+      },
+      component: trapezoidal
+    },
+    {
+      path: '/IntoStatistical',
+      name: 'IntoStatistical',
+      meta: {
+        requireAuth: true
+      },
+      component: IntoStatistical
     },
   ],
 

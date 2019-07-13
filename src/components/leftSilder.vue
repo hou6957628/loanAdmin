@@ -11,45 +11,6 @@
             background-color="#545c64"
             text-color="#fff"
             active-text-color="#ffd04b" router>
-            <!--<el-submenu index="1">-->
-              <!--<template style="padding-left: 5px" slot="title">-->
-                <!--<i class="el-icon-location"></i>-->
-                <!--<span>产品中心</span>-->
-              <!--</template>-->
-              <!--<el-menu-item-group >-->
-                <!--<el-menu-item index="/productList">产品列表</el-menu-item>-->
-              <!--</el-menu-item-group>-->
-              <!--<el-menu-item-group>-->
-                <!--<el-menu-item index="/addProduct">添加首页弹窗</el-menu-item>-->
-              <!--</el-menu-item-group>-->
-              <!--<el-menu-item-group>-->
-                <!--<el-menu-item index="/addBannerProduct">添加banner图</el-menu-item>-->
-              <!--</el-menu-item-group>-->
-              <!--<el-menu-item-group>-->
-                <!--<el-menu-item index="/addIconProduct">添加icon按钮</el-menu-item>-->
-              <!--</el-menu-item-group>-->
-              <!--<el-menu-item-group>-->
-                <!--<el-menu-item index="/addProductList">添加产品列表</el-menu-item>-->
-              <!--</el-menu-item-group>-->
-              <!--<el-menu-item-group>-->
-                <!--<el-menu-item index="/editorProduct">编辑首页弹窗</el-menu-item>-->
-              <!--</el-menu-item-group>-->
-              <!--<el-menu-item-group>-->
-                <!--<el-menu-item index="/editorBannerProduct">编辑banner图</el-menu-item>-->
-              <!--</el-menu-item-group>-->
-              <!--<el-menu-item-group>-->
-                <!--<el-menu-item index="/editorIconProduct">编辑icon按钮</el-menu-item>-->
-              <!--</el-menu-item-group>-->
-              <!--<el-menu-item-group>-->
-                <!--<el-menu-item index="/editorProductList">编辑产品列表</el-menu-item>-->
-              <!--</el-menu-item-group>-->
-              <!--<el-menu-item-group>-->
-                <!--<el-menu-item index="/productStatistics">产品统计</el-menu-item>-->
-              <!--</el-menu-item-group>-->
-              <!--<el-menu-item-group>-->
-                <!--<el-menu-item index="/operation">统计操作</el-menu-item>-->
-              <!--</el-menu-item-group>-->
-            <!--</el-submenu>-->
             <el-menu-item index="/productList">
               <i class="el-icon-tickets"></i>
               <span slot="title">产品中心</span>
@@ -65,6 +26,10 @@
             <el-menu-item index="/productLatitude">
               <i class="el-icon-tickets"></i>
               <span slot="title">产品纬度</span>
+            </el-menu-item>
+            <el-menu-item index="/IntoStatistical">
+              <i class="el-icon-tickets"></i>
+              <span slot="title">进量统计</span>
             </el-menu-item>
             <el-menu-item index="/pageStatisticalCenter">
               <i class="el-icon-menu"></i>

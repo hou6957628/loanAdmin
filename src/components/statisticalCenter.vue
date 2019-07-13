@@ -26,6 +26,9 @@
           </el-input>
           <el-button type="primary" icon="el-icon-search" @click="searchBtn">搜索</el-button>
           <el-button type="primary" @click="daoBtn">导出<i class="el-icon-download el-icon--right"></i></el-button>
+          <el-tooltip class="item" effect="dark" content="点击即可刷新当天最新UV" placement="right">
+            <el-button type="success" @click="refreshBtn">刷新UV<i class="el-icon-refresh el-icon--right"></i></el-button>
+          </el-tooltip>
           <!--<a :href="http://192.168.20.216:9999/flowPool/admin/productinfo/export?name="++'&startDate='+this.startTime+'&endDate='+this.endTime+'&token='+localStorage.token">导出</a>-->
           <!--<a href="http://192.168.20.216:9999/flowPool/admin/productinfo/export?name"+{{}}+>导出</a>-->
           <!--<a v-bind:href="['http://192.168.20.216:9999/flowPool/admin/productinfo/export?name'+this.value8+'&startDate='+this.startTime+'&endDate='+this.endTime+'&token='+localStorage.token]">导出</a>-->
@@ -34,6 +37,7 @@
       </div>
       <template>
         <el-table
+          v-loading="loading"
           :data="tableData"
           border
           style="width: 100%">
@@ -57,42 +61,42 @@
           <el-table-column
             prop="cpaPrice"
             label="CPA单价"
-            width="120">
+            width="80">
           </el-table-column>
           <el-table-column
             prop="cpaNumber"
             label="CPA数量"
-            width="120">
+            width="80">
           </el-table-column>
           <el-table-column
             prop="cpsPrice"
             label="CPS单价"
-            width="120">
+            width="80">
           </el-table-column>
           <el-table-column
             prop="cpsNumber"
             label="CPS数量"
-            width="120">
+            width="80">
           </el-table-column>
           <el-table-column
             prop="uvPrice"
             label="UV单价"
-            width="120">
+            width="80">
           </el-table-column>
           <el-table-column
             prop="uvNumber"
             label="UV数"
-            width="120">
+            width="80">
           </el-table-column>
           <el-table-column
             prop="uvIncome"
             label="UV收益"
-            width="120">
+            width="80">
           </el-table-column>
           <el-table-column
             prop="income"
             label="当天收益"
-            width="120">
+            width="80">
           </el-table-column>
           <el-table-column
             prop="buttonNumber"
@@ -222,6 +226,24 @@
           });
         })
       },
+      //刷新UV
+      refreshBtn(){
+        this.loading=true;
+        axios({
+          method:"post",
+          url:"http://"+this.baseUrl+"/flowPool/admin/productinfo/refreshUvToday",
+          headers:{
+            'Authorization': localStorage.token
+          },
+        }).then((res)=>{
+          this.loading=false;
+          this.$message({
+            message: '刷新成功',
+            type: 'success'
+          });
+          this.getProductList(this.pageNum,this.nowPageSizes,this.value8,this.startTime,this.endTime);
+        })
+      },
       getProductList(data1,data2,data3,data4,data5){
         axios({
           method:"get",
@@ -275,6 +297,7 @@
         tableData: [],
         options: [],
         value4: '',
+        loading:false,
         pickerOptions2: {
           shortcuts: [{
             text: '最近一周',
