@@ -57,25 +57,25 @@
           width="120">
         </el-table-column>
         <el-table-column
-          prop="pvNum"
+          prop="channelData.pvNum"
           label="浏览(pv)"
           align="center"
           width="90">
         </el-table-column>
         <el-table-column
-          prop="uvNum"
+          prop="channelData.uvNum"
           label="访问(uV)"
           align="center"
           width="90">
         </el-table-column>
         <el-table-column
-          prop="cpaNum"
+          prop="channelData.cpaNum"
           label="注册(cpa)"
           align="center"
           width="90">
         </el-table-column>
         <el-table-column
-          prop="loginNum"
+          prop="channelData.loginNum"
           label="APP成功登陆数"
           align="center"
           width="120">
@@ -88,7 +88,7 @@
           width="100">
         </el-table-column>
         <el-table-column
-          prop="unitPrice"
+          prop="channelData.unitPrice"
           align="center"
           label="单价"
           width="90">

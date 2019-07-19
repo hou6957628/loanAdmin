@@ -95,31 +95,31 @@
           width="100">
         </el-table-column>
         <el-table-column
-          prop="batchConsumptionAmount"
+          prop="consumptionAmount"
           align="center"
           label="消耗金额"
           width="100">
         </el-table-column>
         <el-table-column
-          prop="batchSuperUvCost"
+          prop="superUvCost"
           label="贷超UV成本"
           align="center"
           width="100">
         </el-table-column>
         <el-table-column
-          prop="batchChannelAccountBalance"
+          prop="channelAccountBalance"
           label="渠道账户余额"
           align="center"
           width="110">
         </el-table-column>
         <el-table-column
-          prop="batchSuperUvProfit"
+          prop="superUvProfit"
           label="贷超总UV收益"
           align="center"
           width="120">
         </el-table-column>
         <el-table-column
-          prop="batchAverageUvProfit"
+          prop="averageUvProfit"
           label="平均UV收益"
           align="center"
           width="120">
@@ -136,18 +136,10 @@
         <!--width="120">-->
         <!--</el-table-column>-->
         <el-table-column
-          prop="batchProduceInvestment"
+          prop="produceInvestment"
           label="投入及产出比"
           align="center"
           width="140">
-        </el-table-column>
-        <el-table-column
-          label="操作"
-          align="center"
-          width="80">
-          <template slot-scope="scope">
-            <el-button @click="look(scope.row)" type="text" size="small">查看</el-button>
-          </template>
         </el-table-column>
       </el-table>
     </template>

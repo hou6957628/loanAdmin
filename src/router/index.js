@@ -81,8 +81,8 @@ axios.interceptors.response.use(
     return Promise.reject(error.response)   // 返回接口返回的错误信息
   });
 
-// Vue.prototype.baseUrl="60.205.216.141";
-Vue.prototype.baseUrl="47.93.234.167:31999";
+Vue.prototype.baseUrl="60.205.216.141";
+// Vue.prototype.baseUrl="47.93.234.167:31999";
 // Vue.prototype.baseUrl="192.168.20.190:2881";
 // Vue.prototype.baseUrl="192.168.20.216:9999";
 Vue.prototype.uurl="window.location.origin";
