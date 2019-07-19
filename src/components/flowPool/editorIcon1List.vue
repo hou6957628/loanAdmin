@@ -34,6 +34,46 @@
       <el-form-item label="产品链接" prop="h5Url">
         <el-input v-model="ruleForm.h5Url" placeholder="例: 请输入产品链接"></el-input>
       </el-form-item>
+      <el-form-item label="年龄分类" prop="classifyAge">
+        <el-select v-model="ruleForm.classifyAge">
+          <el-option
+            v-for="item in electData4"
+            :key="item.id"
+            :label="item.name"
+            :value="item.id">
+          </el-option>
+        </el-select>
+      </el-form-item>
+      <el-form-item label="借款金额" prop="classifyCapital">
+        <el-select v-model="ruleForm.classifyCapital">
+          <el-option
+            v-for="item in electData5"
+            :key="item.id"
+            :label="item.name"
+            :value="item.id">
+          </el-option>
+        </el-select>
+      </el-form-item>
+      <el-form-item label="职业分类" prop="classifyOccupation">
+        <el-select v-model="ruleForm.classifyOccupation">
+          <el-option
+            v-for="item in electData6"
+            :key="item.id"
+            :label="item.name"
+            :value="item.id">
+          </el-option>
+        </el-select>
+      </el-form-item>
+      <el-form-item label="信用分类" prop="classifyCredit">
+        <el-select v-model="ruleForm.classifyCredit">
+          <el-option
+            v-for="item in electData7"
+            :key="item.id"
+            :label="item.name"
+            :value="item.id">
+          </el-option>
+        </el-select>
+      </el-form-item>
       <el-form-item label="备注" prop="remark">
         <el-input type="textarea" v-model="ruleForm.remark" placeholder="为对此产品的备注信息"></el-input>
       </el-form-item>
@@ -54,6 +94,31 @@
     data() {
       return {
         electValue1:'',
+        electData4:[
+          {id:0,name:'22-35'},
+          {id:1,name:'36-45'},
+          {id:2,name:'45-55'},
+          {id:3,name:'55岁以上'},
+        ],
+        electData5:[
+          {id:0,name:'2000-3000'},
+          {id:1,name:'3000-5000'},
+          {id:2,name:'5000-8000'},
+          {id:3,name:'8000-1万'},
+          {id:4,name:'1万-5万'},
+          {id:5,name:'5万-10万'},
+        ],
+        electData6:[
+          {id:0,name:'工薪族'},
+          {id:1,name:'无固定职业'},
+          {id:2,name:'个体户'},
+          {id:3,name:'企业主'},
+        ],
+        electData7:[
+          {id:0,name:'借过多次，被拒多次'},
+          {id:1,name:'借过网贷，信用良好'},
+          {id:2,name:'未借过网贷'},
+        ],
         electValue:'编辑大额分期列表',
         ruleForm: {
           image: '点击上传logo',
@@ -76,6 +141,10 @@
           detail:'',
           electValue:'',
           electValue1:'',
+          classifyAge:0,
+          classifyCapital:0,
+          classifyOccupation:0,
+          classifyCredit:0,
         },
         rules: {
           pname: [
@@ -121,6 +190,18 @@
           remark:[
             {required: true, message: '请填写对此产品的备注信息', trigger: 'blur'}
           ],
+          classifyAge: [
+            {required: true, message: '请选择年龄分类', trigger: 'change'}
+          ],
+          classifyCapital: [
+            {required: true, message: '请选择借款金额', trigger: 'change'}
+          ],
+          classifyOccupation: [
+            {required: true, message: '请选择职业分类', trigger: 'change'}
+          ],
+          classifyCredit: [
+            {required: true, message: '请选择信用分类', trigger: 'change'}
+          ],
         }
       };
     },
@@ -147,6 +228,10 @@
             param.append('description2', this.ruleForm.description2) // 添加form表单中其他数据
             param.append('description3', this.ruleForm.description3) // 添加form表单中其他数据
             param.append('description5', this.ruleForm.description5) // 添加form表单中其他数据
+            param.append('classifyAge', this.ruleForm.classifyAge);
+            param.append('classifyCapital', this.ruleForm.classifyCapital);
+            param.append('classifyOccupation', this.ruleForm.classifyOccupation);
+            param.append('classifyCredit', this.ruleForm.classifyCredit);
             param.append('id', this.id) // 添加form表单中其他数据
             axios({
               method:"POST",

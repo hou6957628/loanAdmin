@@ -233,6 +233,18 @@
           remark:[
             {required: true, message: '请填写对此产品的备注信息', trigger: 'blur'}
           ],
+          classifyAge: [
+            {required: true, message: '请选择年龄分类', trigger: 'change'}
+          ],
+          classifyCapital: [
+            {required: true, message: '请选择借款金额', trigger: 'change'}
+          ],
+          classifyOccupation: [
+            {required: true, message: '请选择职业分类', trigger: 'change'}
+          ],
+          classifyCredit: [
+            {required: true, message: '请选择信用分类', trigger: 'change'}
+          ],
         }
       };
     },

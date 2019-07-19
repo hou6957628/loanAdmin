@@ -93,23 +93,23 @@
     methods: {
       //每页显示多少条
       handleSizeChange(val) {
-        this.getProductList(this.pageNum,val,this.startTime,this.endTime);
+        this.getProductList(this.pageNum,val,this.value8,this.startTime,this.endTime);
         this.nowPageSizes=val;
       },
       //翻页
       handleCurrentChange(val) {
-        this.getProductList(val,this.nowPageSizes,this.startTime,this.endTime);
+        this.getProductList(val,this.nowPageSizes,this.value8,this.startTime,this.endTime);
       },
       //时间查询
       logTimeChange(){
         if(this.value7==''||this.value7==null){
-          this.getProductList(this.pageNum,this.nowPageSizes,null,null);
+          this.getProductList(this.pageNum,this.nowPageSizes,this.value8,null,null);
         }else {
           var startTime=this.value7[0];
           var endTime=this.value7[1];
           this.startTime=startTime;
           this.endTime=endTime;
-          this.getProductList(this.pageNum,this.nowPageSizes,this.startTime,this.endTime);
+          this.getProductList(this.pageNum,this.nowPageSizes,this.value8,this.startTime,this.endTime);
         }
       },
       //导出
@@ -214,7 +214,7 @@
         }).then((res)=>{
           if(res.data.msgCd=='ZYCASH-200'){
             this.dialogFormVisible1=false;
-            this.getProductList(this.pageNum,this.nowPageSizes,null,null);
+            this.getProductList(this.pageNum,this.nowPageSizes,this.value8,null,null);
           }else {
             this.$message.error(res.data.msgInfo);
           }

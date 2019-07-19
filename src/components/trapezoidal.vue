@@ -33,7 +33,6 @@
       <el-table
         :data="tableData"
         v-loading="loading"
-        show-summary
         border
         style="width: 100%">
         <el-table-column
@@ -126,7 +125,7 @@
           width="120">
         </el-table-column>
         <el-table-column
-          prop="batchProduceUvNum"
+          prop="produceUvNum"
           label="产出UV数(申请数)"
           align="center"
           width="140">
@@ -224,10 +223,10 @@
           }
         }).then((res)=>{
           if(res.data.msgCd=='ZYCASH-200'){
-            this.tableData=res.data.body.list;
-            this.proTotal=res.data.body.total;
-            this.pageSize=res.data.body.pageSize;
-            this.pageNum=res.data.body.pageNum;
+            this.tableData=res.data.body.channelData.list;
+            this.proTotal=res.data.body.channelData.total;
+            this.pageSize=res.data.body.channelData.pageSize;
+            this.pageNum=res.data.body.channelData.pageNum;
             this.loading=false;
           }else {
             this.$message.error(res.data.msgInfo);

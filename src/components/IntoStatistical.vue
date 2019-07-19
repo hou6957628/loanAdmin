@@ -33,7 +33,6 @@
       <el-table
         :data="tableData"
         v-loading="loading"
-        show-summary
         border
         style="width: 100%">
         <el-table-column
@@ -41,21 +40,21 @@
           prop="statisticsDate"
           label="日期"
           align="center"
-          width="150">
+          width="110">
         </el-table-column>
         <el-table-column
           fixed
           prop="parentChannelName"
           label="采量主渠道名称"
           align="center"
-          width="130">
+          width="120">
         </el-table-column>
         <el-table-column
           fixed
           prop="subChannelName"
           label="采量子渠道名称"
           align="center"
-          width="130">
+          width="120">
         </el-table-column>
         <el-table-column
           prop="pvNum"
@@ -92,13 +91,13 @@
           prop="unitPrice"
           align="center"
           label="单价"
-          width="100">
+          width="90">
         </el-table-column>
         <el-table-column
           prop="batchConsumptionAmount"
           align="center"
           label="消耗金额"
-          width="100">
+          width="90">
         </el-table-column>
         <el-table-column
           prop="batchSuperUvCost"
@@ -122,7 +121,7 @@
           prop="batchAverageUvProfit"
           label="平均UV收益"
           align="center"
-          width="120">
+          width="100">
         </el-table-column>
         <el-table-column
           prop="batchProduceUvNum"
@@ -150,6 +149,25 @@
           </template>
         </el-table-column>
       </el-table>
+    </template>
+    <template>
+      <table class="ddd">
+        <tr>
+          <td>累计:</td>
+          <td>单价&nbsp;:&nbsp;{{this.tableData1.unitPrice}}</td>
+          <td>浏览pv&nbsp;:&nbsp;{{this.tableData1.pvNum}}</td>
+          <td>平均UV收益&nbsp;:&nbsp;{{this.tableData1.averageUvProfit}}</td>
+          <td>消耗金额&nbsp;:&nbsp;{{this.tableData1.consumptionAmount}}</td>
+          <td>渠道账户余额&nbsp;:&nbsp;{{this.tableData1.channelAccountBalance}}</td>
+          <td>贷超UV成本&nbsp;:&nbsp;{{this.tableData1.superUvCost}}</td>
+          <td>APP成功登陆数&nbsp;:&nbsp;{{this.tableData1.loginNum}}</td>
+          <td>贷超总UV收益&nbsp;:&nbsp;{{this.tableData1.superUvProfit}}</td>
+          <td>{{this.tableData1.uvOtherNum}}</td>
+          <td>投入及产出比&nbsp;:&nbsp;{{this.tableData1.produceInvestment}}</td>
+          <td>注册cpa&nbsp;:&nbsp;{{this.tableData1.cpaNum}}</td>
+          <td>产出UV数&nbsp;:&nbsp;{{this.tableData1.produceUvNum}}</td>
+        </tr>
+      </table>
     </template>
     <div class="block">
       <el-pagination class="paginationBox"
@@ -223,10 +241,12 @@
           }
         }).then((res)=>{
           if(res.data.msgCd=='ZYCASH-200'){
-            this.tableData=res.data.body.list;
-            this.proTotal=res.data.body.total;
-            this.pageSize=res.data.body.pageSize||10;
-            this.pageNum=res.data.body.pageNum||1;
+            this.tableData1=res.data.body.channelDataCount;
+            console.log(this.tableData1);
+            this.tableData=res.data.body.channelDataList.list;
+            this.proTotal=res.data.body.channelDataList.total;
+            this.pageSize=res.data.body.channelDataList.pageSize||10;
+            this.pageNum=res.data.body.channelDataList.pageNum||1;
             this.loading=false;
           }else {
             this.$message.error(res.data.msgInfo);
@@ -264,6 +284,7 @@
     data() {
       return {
         tableData: [],
+        tableData1: [],
         pickerOptions2: {
           shortcuts: [{
             text: '最近一周',
@@ -313,6 +334,14 @@
 </script>
 
 <style scoped>
+  .ddd{
+    height: 50px;
+  }
+  .ddd tr td{
+    text-align: center;
+    min-width: 120px;
+    padding: 10px 0;
+  }
   .content {
     padding-left: 200px;
     padding-top: 80px;
