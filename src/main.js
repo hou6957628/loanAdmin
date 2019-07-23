@@ -3,11 +3,39 @@
 import Vue from 'vue'
 import home from './home'
 import router from './router'
-import ElementUI from 'element-ui'
+// import ElementUI from 'element-ui'
+import 'element-ui/lib/theme-chalk/index.css';
+import { Button,Table,Pagination,Row,Col,Menu,Breadcrumb,Select,Option,Input,MenuItem,BreadcrumbItem,TableColumn,Tag,DatePicker,Tooltip,Loading,Dialog,Form,FormItem,Alert,Message,CheckboxGroup,Checkbox} from 'element-ui'
 import axios from 'axios'
-Vue.config.productionTip = false;
 
-Vue.use(ElementUI);
+Vue.config.productionTip = false;
+Vue.prototype.$axios=axios;
+
+Vue.use(Button);
+Vue.use(Pagination);
+Vue.use(Table);
+Vue.use(Row);
+Vue.use(Col);
+Vue.use(Menu);
+Vue.use(Breadcrumb);
+Vue.use(Select);
+Vue.use(Option);
+Vue.use(Input);
+Vue.use(MenuItem);
+Vue.use(BreadcrumbItem);
+Vue.use(TableColumn);
+Vue.use(Tag);
+Vue.use(DatePicker);
+Vue.use(Tooltip);
+Vue.use(Loading);
+Vue.use(Form);
+Vue.use(FormItem);
+Vue.use(Dialog);
+Vue.use(Alert);
+Vue.component(Message.name, Message)
+Vue.use(CheckboxGroup);
+Vue.use(Checkbox);
+Vue.prototype.$message=Message;
 //格式化日期
 Vue.prototype.dateFormatCustom = function (date){
   var year=date.getFullYear();

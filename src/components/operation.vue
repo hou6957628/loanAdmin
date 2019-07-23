@@ -84,7 +84,7 @@
 </template>
 
 <script>
-  import axios from 'axios'
+
   export default {
     data() {
       return {
@@ -148,7 +148,7 @@
         });
       },
       getProductList(data1){
-        axios({
+        this.$axios({
           method:"get",
           url:"http://"+this.baseUrl+"/flowPool/admin/productinfo/queryProductInfoById",
           headers:{
@@ -191,7 +191,7 @@
         this.submitFrom(3)
       },
       submitFrom(data){
-        axios({
+        this.$axios({
           method:"POST",
           url:"http://"+this.baseUrl+"/flowPool/admin/productinfo/updateProductInfoById",
           headers:{

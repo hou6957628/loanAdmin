@@ -50,7 +50,7 @@
 </template>
 
 <script>
-  import axios from 'axios'
+
   export default {
     data() {
       return {
@@ -121,7 +121,7 @@
             param.append('h5Url', this.ruleForm.url) // 添加form表单中其他数据
             param.append('remark', this.ruleForm.desc) // 添加form表单中其他数据
             param.append('accountId', this.ruleForm.electValue1) // 添加form表单中其他数据
-            axios({
+            this.$axios({
               method:"POST",
               url:"http://"+this.baseUrl+"/flowPool/admin/product/addProduct",
               headers:{
@@ -187,7 +187,7 @@
         }
       },
       getProductList(){
-        axios({
+        this.$axios({
           method:"get",
           url:"http://"+this.baseUrl+"/flowPool/admin/product/toAddProduct",
           headers:{

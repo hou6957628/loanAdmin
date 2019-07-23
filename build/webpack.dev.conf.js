@@ -14,6 +14,8 @@ const portfinder = require('portfinder')
 
 const HOST = process.env.HOST
 const PORT = process.env.PORT && Number(process.env.PORT)
+// 测试打包文件大小可视化
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 const devWebpackConfig = merge(baseWebpackConfig, {
   module: {
@@ -47,6 +49,7 @@ const devWebpackConfig = merge(baseWebpackConfig, {
     }
   },
   plugins: [
+    new BundleAnalyzerPlugin(),
     new webpack.DefinePlugin({
       'process.env': require('../config/dev.env')
     }),

@@ -1,49 +1,50 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import login from '@/components/login'
-import home from '@/home'
-import accountCenter from '@/components/accountCenter'
-import statisticalCenter from '@/components/statisticalCenter'
-import productList from '@/components/productList'
-import addHomeProductList from '@/components/addHomeProductList'
-import editorHomeProductList from '@/components/editorHomeProductList'
-import addProduct from '@/components/addProduct'
-import addBannerProduct from '@/components/addBannerProduct'
-import addIconProduct from '@/components/addIconProduct'
-import addIconProduct2 from '@/components/addIconProduct2'
-import addIconProduct3 from '@/components/addIconProduct3'
-import addIconProduct4 from '@/components/addIconProduct4'
-import addProductList from '@/components/addProductList'
-import productStatistics from '@/components/productStatistics'
-import operation from '@/components/operation'
-import editorBannerProduct from '@/components/editorBannerProduct'
-import editorIconProduct from '@/components/editorIconProduct'
-import editorIconProduct2 from '@/components/editorIconProduct2'
-import editorIconProduct3 from '@/components/editorIconProduct3'
-import editorIconProduct4 from '@/components/editorIconProduct4'
-import editorProduct from '@/components/editorProduct'
-import editorProductList from '@/components/editorProductList'
-import pageStatisticalCenter from '@/components/pageStatisticalCenter'
-import channelLatitude from '@/components/channelLatitude'
-import productLatitude from '@/components/productLatitude'
+// import login from '@/components/login'
+// import home from '@/home'
+// import accountCenter from '@/components/accountCenter'
+// import statisticalCenter from '@/components/statisticalCenter'
+// import productList from '@/components/productList'
+// import addHomeProductList from '@/components/addHomeProductList'
+// import editorHomeProductList from '@/components/editorHomeProductList'
+// import addProduct from '@/components/addProduct'
+// import addBannerProduct from '@/components/addBannerProduct'
+// import addIconProduct from '@/components/addIconProduct'
+// import addIconProduct2 from '@/components/addIconProduct2'
+// import addIconProduct3 from '@/components/addIconProduct3'
+// import addIconProduct4 from '@/components/addIconProduct4'
+// import addProductList from '@/components/addProductList'
+// import productStatistics from '@/components/productStatistics'
+// import operation from '@/components/operation'
+// import editorBannerProduct from '@/components/editorBannerProduct'
+// import editorIconProduct from '@/components/editorIconProduct'
+// import editorIconProduct2 from '@/components/editorIconProduct2'
+// import editorIconProduct3 from '@/components/editorIconProduct3'
+// import editorIconProduct4 from '@/components/editorIconProduct4'
+// import editorProduct from '@/components/editorProduct'
+// import editorProductList from '@/components/editorProductList'
+// import pageStatisticalCenter from '@/components/pageStatisticalCenter'
+// import channelLatitude from '@/components/channelLatitude'
+// import productLatitude from '@/components/productLatitude'
 //小锦鲤
-import addIcon1List from '@/components/flowPool/addIcon1List'
-import addIcon2List from '@/components/flowPool/addIcon2List'
-import addIcon3List from '@/components/flowPool/addIcon3List'
-import addIcon4List from '@/components/flowPool/addIcon4List'
-import addIcon5List from '@/components/flowPool/addIcon5List'
-import addLookList from '@/components/flowPool/addLookList'
-import editorIcon1List from '@/components/flowPool/editorIcon1List'
-import editorIcon2List from '@/components/flowPool/editorIcon2List'
-import editorIcon3List from '@/components/flowPool/editorIcon3List'
-import editorIcon4List from '@/components/flowPool/editorIcon4List'
-import editorIcon5List from '@/components/flowPool/editorIcon5List'
-import editorLookList from '@/components/flowPool/editorLookList'
-import trapezoidal from '@/components/trapezoidal'
-import IntoStatistical from '@/components/IntoStatistical'
-
-import Recharge from '@/components/Recharge'
+// import addIcon1List from '@/components/flowPool/addIcon1List'
+// import addIcon2List from '@/components/flowPool/addIcon2List'
+// import addIcon3List from '@/components/flowPool/addIcon3List'
+// import addIcon4List from '@/components/flowPool/addIcon4List'
+// import addIcon5List from '@/components/flowPool/addIcon5List'
+// import addLookList from '@/components/flowPool/addLookList'
+// import editorIcon1List from '@/components/flowPool/editorIcon1List'
+// import editorIcon2List from '@/components/flowPool/editorIcon2List'
+// import editorIcon3List from '@/components/flowPool/editorIcon3List'
+// import editorIcon4List from '@/components/flowPool/editorIcon4List'
+// import editorIcon5List from '@/components/flowPool/editorIcon5List'
+// import editorLookList from '@/components/flowPool/editorLookList'
+// import trapezoidal from '@/components/trapezoidal'
+// import IntoStatistical from '@/components/IntoStatistical'
+//
+// import Recharge from '@/components/Recharge'
 import axios from 'axios'
+
 import qs from 'qs';
 
 Vue.use(Router);
@@ -81,8 +82,8 @@ axios.interceptors.response.use(
     return Promise.reject(error.response)   // 返回接口返回的错误信息
   });
 
-Vue.prototype.baseUrl="60.205.216.141";
-// Vue.prototype.baseUrl="47.93.234.167:31999";
+// Vue.prototype.baseUrl="60.205.216.141";
+Vue.prototype.baseUrl="47.93.234.167:31999";
 // Vue.prototype.baseUrl="192.168.20.190:2881";
 // Vue.prototype.baseUrl="192.168.20.216:9999";
 Vue.prototype.uurl="window.location.origin";
@@ -92,17 +93,17 @@ const vueRouter = new Router({
     {
       path: '*',
       name: 'login',
-      component: login
+      component: resolve => require(['@/components/login'],resolve),
     },
     {
       path: '/',
       name: 'login',
-      component: login
+      component: resolve => require(['@/components/login'],resolve),
     },
     {
       path: '/login',
       name: 'login',
-      component: login
+      component: resolve => require(['@/components/login'],resolve),
     },
     {
       path: '/home',
@@ -110,7 +111,7 @@ const vueRouter = new Router({
       meta: {
         requireAuth: true
       },
-      component: home
+      component: resolve => require(['@/home'],resolve),
     },
     {
       path: '/productList/:name',
@@ -118,7 +119,7 @@ const vueRouter = new Router({
       meta: {
         requireAuth: true
       },
-      component: productList
+      component: resolve => require(['@/components/productList'],resolve),
     },
     {
       path: '/productList',
@@ -126,7 +127,7 @@ const vueRouter = new Router({
       meta: {
         requireAuth: true
       },
-      component: productList
+      component: resolve => require(['@/components/productList'],resolve),
     },
     {
       path: '/addHomeProductList',
@@ -134,7 +135,7 @@ const vueRouter = new Router({
       meta: {
         requireAuth: true
       },
-      component: addHomeProductList
+      component: resolve => require(['@/components/addHomeProductList'],resolve),
     },
     {
       path: '/editorHomeProductList/:id',
@@ -142,7 +143,7 @@ const vueRouter = new Router({
       meta: {
         requireAuth: true
       },
-      component: editorHomeProductList
+      component: resolve => require(['@/components/editorHomeProductList'],resolve),
     },
     {
       path: '/accountCenter',
@@ -150,7 +151,7 @@ const vueRouter = new Router({
       meta: {
         requireAuth: true
       },
-      component: accountCenter
+      component: resolve => require(['@/components/accountCenter'],resolve),
     },
     {
       path: '/addProduct',
@@ -158,7 +159,7 @@ const vueRouter = new Router({
       meta: {
         requireAuth: true
       },
-      component: addProduct
+      component: resolve => require(['@/components/addProduct'],resolve),
     },
     {
       path: '/editorProduct',
@@ -166,7 +167,7 @@ const vueRouter = new Router({
       meta: {
         requireAuth: true
       },
-      component: editorProduct
+      component: resolve => require(['@/components/editorProduct'],resolve),
     },
     {
       path: '/statisticalCenter',
@@ -174,7 +175,7 @@ const vueRouter = new Router({
       meta: {
         requireAuth: true
       },
-      component: statisticalCenter
+      component: resolve => require(['@/components/statisticalCenter'],resolve),
     },
     {
       path: '/addBannerProduct',
@@ -182,7 +183,7 @@ const vueRouter = new Router({
       meta: {
         requireAuth: true
       },
-      component: addBannerProduct
+      component: resolve => require(['@/components/addBannerProduct'],resolve),
     },
     {
       path: '/addIconProduct',
@@ -190,7 +191,7 @@ const vueRouter = new Router({
       meta: {
         requireAuth: true
       },
-      component: addIconProduct
+      component: resolve => require(['@/components/addIconProduct'],resolve),
     },
     {
       path: '/addIconProduct2',
@@ -198,7 +199,7 @@ const vueRouter = new Router({
       meta: {
         requireAuth: true
       },
-      component: addIconProduct2
+      component:resolve => require(['@/components/addIconProduct2'],resolve),
     },
     {
       path: '/addIconProduct3',
@@ -206,7 +207,7 @@ const vueRouter = new Router({
       meta: {
         requireAuth: true
       },
-      component: addIconProduct3
+      component: resolve => require(['@/components/addIconProduct3'],resolve),
     },
     {
       path: '/addIconProduct4',
@@ -214,7 +215,7 @@ const vueRouter = new Router({
       meta: {
         requireAuth: true
       },
-      component: addIconProduct4
+      component: resolve => require(['@/components/addIconProduct4'],resolve),
     },
     {
       path: '/addProductList',
@@ -222,7 +223,7 @@ const vueRouter = new Router({
       meta: {
         requireAuth: true
       },
-      component: addProductList
+      component: resolve => require(['@/components/addProductList'],resolve),
     },
     {
       path: '/productStatistics/:id',
@@ -230,7 +231,7 @@ const vueRouter = new Router({
       meta: {
         requireAuth: true
       },
-      component: productStatistics
+      component: resolve => require(['@/components/productStatistics'],resolve),
     },
     {
       path: '/operation/:id/:countType',
@@ -238,7 +239,7 @@ const vueRouter = new Router({
       meta: {
         requireAuth: true
       },
-      component: operation
+      component: resolve => require(['@/components/operation'],resolve),
     },
     {
       path: '/Recharge/:id',
@@ -246,7 +247,7 @@ const vueRouter = new Router({
       meta: {
         requireAuth: true
       },
-      component: Recharge
+      component: resolve => require(['@/components/Recharge'],resolve),
     },
     {
       path: '/editorBannerProduct/:id',
@@ -254,7 +255,7 @@ const vueRouter = new Router({
       meta: {
         requireAuth: true
       },
-      component: editorBannerProduct
+      component: resolve => require(['@/components/editorBannerProduct'],resolve),
     },
     {
       path: '/editorIconProduct/:id',
@@ -262,7 +263,7 @@ const vueRouter = new Router({
       meta: {
         requireAuth: true
       },
-      component: editorIconProduct
+      component: resolve => require(['@/components/editorIconProduct'],resolve),
     },
     {
       path: '/editorIconProduct2/:id',
@@ -270,7 +271,7 @@ const vueRouter = new Router({
       meta: {
         requireAuth: true
       },
-      component: editorIconProduct2
+      component: resolve => require(['@/components/editorIconProduct2'],resolve),
     },
     {
       path: '/editorIconProduct3/:id',
@@ -278,7 +279,7 @@ const vueRouter = new Router({
       meta: {
         requireAuth: true
       },
-      component: editorIconProduct3
+      component: resolve => require(['@/components/editorIconProduct3'],resolve),
     },
     {
       path: '/editorIconProduct4/:id',
@@ -286,7 +287,7 @@ const vueRouter = new Router({
       meta: {
         requireAuth: true
       },
-      component: editorIconProduct4
+      component: resolve => require(['@/components/editorIconProduct4'],resolve),
     },
     {
       path: '/editorProduct/:id',
@@ -294,7 +295,7 @@ const vueRouter = new Router({
       meta: {
         requireAuth: true
       },
-      component: editorProduct
+      component: resolve => require(['@/components/editorProduct'],resolve),
     },
     {
       path: '/editorProductList/:id',
@@ -302,7 +303,7 @@ const vueRouter = new Router({
       meta: {
         requireAuth: true
       },
-      component: editorProductList
+      component: resolve => require(['@/components/editorProductList'],resolve),
     },
     {
       path: '/pageStatisticalCenter',
@@ -310,7 +311,7 @@ const vueRouter = new Router({
       meta: {
         requireAuth: true
       },
-      component: pageStatisticalCenter
+      component: resolve => require(['@/components/pageStatisticalCenter'],resolve),
     },
     {
       path: '/productLatitude',
@@ -318,7 +319,7 @@ const vueRouter = new Router({
       meta: {
         requireAuth: true
       },
-      component: productLatitude
+      component: resolve => require(['@/components/productLatitude'],resolve),
     },
     {
       path: '/channelLatitude',
@@ -326,7 +327,7 @@ const vueRouter = new Router({
       meta: {
         requireAuth: true
       },
-      component: channelLatitude
+      component: resolve => require(['@/components/channelLatitude'],resolve),
     },
     {
       path: '/addIcon1List',
@@ -334,7 +335,7 @@ const vueRouter = new Router({
       meta: {
         requireAuth: true
       },
-      component: addIcon1List
+      component: resolve => require(['@/components/flowPool/addIcon1List'],resolve),
     },
     {
       path: '/addIcon2List',
@@ -342,7 +343,7 @@ const vueRouter = new Router({
       meta: {
         requireAuth: true
       },
-      component: addIcon2List
+      component: resolve => require(['@/components/flowPool/addIcon2List'],resolve),
     },
     {
       path: '/addIcon3List',
@@ -350,7 +351,7 @@ const vueRouter = new Router({
       meta: {
         requireAuth: true
       },
-      component: addIcon3List
+      component: resolve => require(['@/components/flowPool/addIcon3List'],resolve),
     },
     {
       path: '/addIcon4List',
@@ -358,7 +359,7 @@ const vueRouter = new Router({
       meta: {
         requireAuth: true
       },
-      component: addIcon4List
+      component: resolve => require(['@/components/flowPool/addIcon4List'],resolve),
     },
     {
       path: '/addIcon5List',
@@ -366,7 +367,7 @@ const vueRouter = new Router({
       meta: {
         requireAuth: true
       },
-      component: addIcon5List
+      component: resolve => require(['@/components/flowPool/addIcon5List'],resolve),
     },
     {
       path: '/addLookList',
@@ -374,7 +375,7 @@ const vueRouter = new Router({
       meta: {
         requireAuth: true
       },
-      component: addLookList
+      component: resolve => require(['@/components/flowPool/addLookList'],resolve),
     },
     {
       path: '/editorIcon1List/:id',
@@ -382,7 +383,7 @@ const vueRouter = new Router({
       meta: {
         requireAuth: true
       },
-      component: editorIcon1List
+      component: resolve => require(['@/components/flowPool/editorIcon1List'],resolve),
     },
     {
       path: '/editorIcon2List/:id',
@@ -390,7 +391,7 @@ const vueRouter = new Router({
       meta: {
         requireAuth: true
       },
-      component: editorIcon2List
+      component: resolve => require(['@/components/flowPool/editorIcon2List'],resolve),
     },
     {
       path: '/editorIcon3List/:id',
@@ -398,7 +399,7 @@ const vueRouter = new Router({
       meta: {
         requireAuth: true
       },
-      component: editorIcon3List
+      component: resolve => require(['@/components/flowPool/editorIcon3List'],resolve),
     },
     {
       path: '/editorIcon4List/:id',
@@ -406,7 +407,7 @@ const vueRouter = new Router({
       meta: {
         requireAuth: true
       },
-      component: editorIcon4List
+      component: resolve => require(['@/components/flowPool/editorIcon4List'],resolve),
     },
     {
       path: '/editorIcon5List/:id',
@@ -414,7 +415,7 @@ const vueRouter = new Router({
       meta: {
         requireAuth: true
       },
-      component: editorIcon5List
+      component: resolve => require(['@/components/flowPool/editorIcon5List'],resolve),
     },
     {
       path: '/editorLookList/:id',
@@ -422,7 +423,7 @@ const vueRouter = new Router({
       meta: {
         requireAuth: true
       },
-      component: editorLookList
+      component: resolve => require(['@/components/flowPool/editorLookList'],resolve),
     },
     {
       path: '/trapezoidal/:name1/:name2',
@@ -430,7 +431,7 @@ const vueRouter = new Router({
       meta: {
         requireAuth: true
       },
-      component: trapezoidal
+      component: resolve => require(['@/components/trapezoidal'],resolve),
     },
     {
       path: '/IntoStatistical',
@@ -438,7 +439,7 @@ const vueRouter = new Router({
       meta: {
         requireAuth: true
       },
-      component: IntoStatistical
+      component: resolve => require(['@/components/IntoStatistical'],resolve),
     },
   ],
 

@@ -115,7 +115,7 @@
 
 <script>
   import qs from 'qs';
-  import axios from 'axios'
+
   export default {
     methods: {
       handleClick(row) {
@@ -214,7 +214,7 @@
         });
       },
       getProductList(data1,data2,data3,data4,){
-        axios({
+        this.$axios({
           method:"get",
           url:"http://"+this.baseUrl+"/flowPool/admin/product/list",
           headers:{
@@ -255,7 +255,7 @@
           id: data.id,
           enabled:!data.enabled
         });
-        axios({
+        this.$axios({
           method:"post",
           url:"http://"+this.baseUrl+"/flowPool/admin/product/obtainedProduct",
           headers:{

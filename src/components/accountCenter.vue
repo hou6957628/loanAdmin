@@ -92,7 +92,7 @@
 </template>
 
 <script>
-  import axios from 'axios'
+
   export default {
     methods: {
       handleClick(row) {
@@ -132,7 +132,7 @@
         this.$router.push('/addProduct');
       },
       getProductList(data1,data2,data3){
-        axios({
+        this.$axios({
           method:"post",
           url:"http://"+this.baseUrl+"/flowPool/admin/account/list",
           headers:{
@@ -166,7 +166,7 @@
       addProduct(){
         console.log(this.accountName);
         console.log(this.remark);
-        axios({
+        this.$axios({
           method:"post",
           url:"http://"+this.baseUrl+"/flowPool/admin/account/addAccount",
           headers:{

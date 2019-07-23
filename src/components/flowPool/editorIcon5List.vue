@@ -92,7 +92,7 @@
 </template>
 
 <script>
-  import axios from 'axios'
+
   export default {
     data() {
       return {
@@ -240,7 +240,7 @@
             param.append('classifyOccupation', this.ruleForm.classifyOccupation);
             param.append('classifyCredit', this.ruleForm.classifyCredit);
             param.append('id', this.id) // 添加form表单中其他数据
-            axios({
+            this.$axios({
               method:"POST",
               url:"http://"+this.baseUrl+"/flowPool/admin/product/updateProductById",
               headers:{
@@ -293,7 +293,7 @@
         }
       },
       getProductList(data){
-        axios({
+        this.$axios({
           method:"get",
           url:"http://"+this.baseUrl+"/flowPool/admin/product/queryProductById",
           headers:{

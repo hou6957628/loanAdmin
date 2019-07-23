@@ -25,7 +25,6 @@
 </template>
 
 <script>
-  import axios from 'axios';
   import qs from 'qs';
   export default {
     data() {
@@ -57,7 +56,7 @@
         });
         this.$refs[formName].validate((valid) => {
           if (valid) {
-            axios({
+            this.$axios({
               method:"post",
               url:"http://"+this.baseUrl+"/flowPool/admin/user/login",
               data:data,

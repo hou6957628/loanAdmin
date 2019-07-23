@@ -197,7 +197,7 @@
 </template>
 
 <script>
-  import axios from 'axios'
+
   export default {
     methods: {
       //每页显示多少条
@@ -224,7 +224,7 @@
       //列表
       getProductList(data1,data2,data3,data4,data5,data6){
         this.loading=true;
-        axios({
+        this.$axios({
           method:"post",
           url:"http://"+this.baseUrl+"/flowPool/admin/channelDataStatistics/list",
           headers:{

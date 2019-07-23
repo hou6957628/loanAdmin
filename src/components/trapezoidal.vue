@@ -171,7 +171,6 @@
 </template>
 
 <script>
-  import axios from 'axios'
   export default {
     methods: {
       //每页显示多少条
@@ -198,7 +197,7 @@
       //列表
       getProductList(data1,data2,data3,data4,data5,data6){
         this.loading=true;
-        axios({
+        this.$axios({
           method:"post",
           url:"http://"+this.baseUrl+"/flowPool/admin/channelData/list",
           headers:{
@@ -233,7 +232,7 @@
       //编辑
       handleClick(row){
         this.dialogFormVisible1=true;
-        axios({
+        this.$axios({
           method:"get",
           url:"http://"+this.baseUrl+"/flowPool/admin/productPage/id",
           headers:{
@@ -253,7 +252,7 @@
       },
       //编辑提交
       editAccount(){
-        axios({
+        this.$axios({
           method:"POST",
           url:"http://"+this.baseUrl+"/flowPool/admin/productPage/edit",
           headers:{

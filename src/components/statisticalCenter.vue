@@ -141,7 +141,7 @@
 </template>
 
 <script>
-  import axios from 'axios'
+
   export default {
     methods: {
       handleClick(row) {
@@ -199,7 +199,7 @@
         this.getProductList(this.pageNum,this.nowPageSizes,this.value8,this.startTime,this.endTime);
       },
       daoBtn(){
-        axios({
+        this.$axios({
           method:"get",
           // url:"http://192.168.20.216:9999/flowPool/admin/productinfo/export",
           url:"http://"+this.baseUrl+"/flowPool/admin/productinfo/exportToken",
@@ -229,7 +229,7 @@
       //刷新UV
       refreshBtn(){
         this.loading=true;
-        axios({
+        this.$axios({
           method:"post",
           url:"http://"+this.baseUrl+"/flowPool/admin/productinfo/refreshUvToday",
           headers:{
@@ -245,7 +245,7 @@
         })
       },
       getProductList(data1,data2,data3,data4,data5){
-        axios({
+        this.$axios({
           method:"get",
           url:"http://"+this.baseUrl+"/flowPool/admin/productinfo/getProductInfoListByName",
           headers:{

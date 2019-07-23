@@ -117,7 +117,7 @@
 </template>
 
 <script>
-  import axios from 'axios'
+
   export default {
     methods: {
       detailClick(row) {
@@ -161,7 +161,7 @@
         this.getProductList(this.pageNum,this.nowPageSizes,this.value8,this.startTime,this.endTime);
       },
       daoBtn(){
-        axios({
+        this.$axios({
           method:"get",
           url:"http://"+this.baseUrl+"/flowPool/admin/productinfo/export",
           headers:{
@@ -184,7 +184,7 @@
         })
       },
       getProductList(data1,data2,data3,data4,data5){
-        axios({
+        this.$axios({
           method:"get",
           url:"http://"+this.baseUrl+"/flowPool/admin/productinfo/getProductInfoList",
           headers:{
@@ -225,7 +225,7 @@
         link.click()
       },
       IncomeBtn(){
-        axios({
+        this.$axios({
           method:"get",
           url:"http://"+this.baseUrl+"/flowPool/admin/productinfo/getIncomeByProductId",
           headers:{

@@ -10,7 +10,7 @@ myPlugin.prototype.apply = function (compiler) {
     compilation.plugin('html-webpack-plugin-before-html-processing', (htmlData, callback) => {
       console.log(htmlData.html);
       htmlData.html = htmlData.html.replace('<div id="app"></div>', `
-      <div id="app"><div style="height: 200px;display: block;background-color: red">1212</div></div>
+      <div id="app"><div style="height: 200px;display: block;background-color: #dadada">1212</div></div>
       `);
       //错误优先
       //如果处理有错误，传递到第一个参数，否则错误参数的位置就null

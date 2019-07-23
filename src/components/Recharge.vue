@@ -92,7 +92,7 @@
 </template>
 
 <script>
-  import axios from 'axios'
+
   export default {
     methods: {
       handleClick(row) {
@@ -118,7 +118,7 @@
         this.getProductList(val,this.nowPageSizes,null,this.startTime,this.endTime);
       },
       getProductList(data1,data2,data3,data4,data5){
-        axios({
+        this.$axios({
           method:"post",
           url:"http://"+this.baseUrl+"/flowPool/admin/account/cashList",
           headers:{
@@ -155,7 +155,7 @@
         if(this.value8==''){
           this.$message.error('请输入充值金额');
         }else {
-          axios({
+          this.$axios({
             method:"post",
             url:"http://"+this.baseUrl+"/flowPool/admin/account/cash",
             headers:{

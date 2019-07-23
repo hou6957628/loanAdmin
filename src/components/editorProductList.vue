@@ -112,7 +112,7 @@
 </template>
 
 <script>
-  import axios from 'axios'
+
   export default {
     data() {
       return {
@@ -279,7 +279,7 @@
             param.append('classifyCapital', this.ruleForm.classifyCapital);
             param.append('classifyOccupation', this.ruleForm.classifyOccupation);
             param.append('classifyCredit', this.ruleForm.classifyCredit);
-            axios({
+            this.$axios({
               method:"POST",
               url:"http://"+this.baseUrl+"/flowPool/admin/product/updateProductById",
               headers:{
@@ -332,7 +332,7 @@
         }
       },
       getProductList(data){
-        axios({
+        this.$axios({
           method:"get",
           url:"http://"+this.baseUrl+"/flowPool/admin/product/queryProductById",
           headers:{
