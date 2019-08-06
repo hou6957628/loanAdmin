@@ -32,7 +32,7 @@ Vue.use(Form);
 Vue.use(FormItem);
 Vue.use(Dialog);
 Vue.use(Alert);
-Vue.component(Message.name, Message)
+Vue.component(Message.name, Message);
 Vue.use(CheckboxGroup);
 Vue.use(Checkbox);
 Vue.prototype.$message=Message;

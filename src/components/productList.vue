@@ -115,7 +115,7 @@
 
 <script>
   import qs from 'qs';
-
+  import {getProductList ,obtainedProduct} from "@/request/api"
   export default {
     methods: {
       handleClick(row) {
@@ -213,30 +213,22 @@
           path: `/addProductList`,
         });
       },
-      getProductList(data1,data2,data3,data4,){
-        this.$axios({
-          method:"get",
-          url:"http://"+this.baseUrl+"/flowPool/admin/product/list",
-          headers:{
-            'Content-Type':'application/x-www-form-urlencoded',
-            'Authorization': localStorage.token
-          },
-          params:{
-            pageNum: data1,
-            pageSize: data2,
-            name: data3,
-            typeId: data4,
+      getProductList(data1, data2, data3, data4,) {
+        getProductList({
+          pageNum: data1,
+          pageSize: data2,
+          name: data3,
+          typeId: data4,
+        }).then(res => {
+          if (res.msgCd == 'ZYCASH-200') {
+            this.tableData = res.body.productList.list;
+            this.proTotal = res.body.productList.total;
+            this.pageSize = res.body.productList.pageSize;
+            this.pageNum = res.body.productList.pageNum;
+          } else {
+            this.$message.error(res.msgInfo);
           }
-        }).then((res)=>{
-          if(res.data.msgCd=='ZYCASH-200'){
-            this.tableData=res.data.body.productList.list;
-            this.proTotal=res.data.body.productList.total;
-            this.pageSize=res.data.body.productList.pageSize;
-            this.pageNum=res.data.body.productList.pageNum;
-          }else {
-            this.$message.error(res.data.msgInfo);
-          }
-        })
+        });
       },
       selectChange(vId,list){
         let obj = {};
@@ -250,30 +242,21 @@
         console.log(this.electValue);
         this.getProductList(1,10,this.input10,this.electValue);
       },
-      obtainedProduct(data){
-        var suju1 = qs.stringify({
+      obtainedProduct(data) {
+        obtainedProduct({
           id: data.id,
-          enabled:!data.enabled
-        });
-        this.$axios({
-          method:"post",
-          url:"http://"+this.baseUrl+"/flowPool/admin/product/obtainedProduct",
-          headers:{
-            'Content-Type':'application/x-www-form-urlencoded',
-            'Authorization': localStorage.token
-          },
-          data:suju1,
-        }).then((res)=>{
-          if(res.data.msgCd=='ZYCASH-200'){
+          enabled: !data.enabled
+        }).then(res => {
+          if (res.msgCd == 'ZYCASH-200') {
             this.$message({
               message: '操作成功',
               type: 'success'
             });
-            this.getProductList(1,10,this.input10,this.electValue);
-          }else {
+            this.getProductList(1, 10, this.input10, this.electValue);
+          } else {
             this.$message.error(res.data.msgInfo);
           }
-        })
+        });
       },
     },
     mounted:function () {
